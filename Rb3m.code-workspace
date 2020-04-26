@@ -13,7 +13,7 @@
      *  ref: https://git-scm.com/docs/gitignore#_pattern_format
      *
      */
-    "html-css-class-completion.includeGlobPattern": "**/_includes/**/*.{css,html}",
+    //"html-css-class-completion.includeGlobPattern": "**/_includes/**/*.{css,html}",
     //"html-css-class-completion.excludeGlobPattern": "**/*_file/**/*.{css,html}"
 
     /**
@@ -142,6 +142,7 @@
      */
     "files.associations": {
       ".eslintrc": "jsonc",
+      ".markdownlintrc": "jsonc",
       "*.theme": "jsonc",
       "*.Rmd": "markdown"
     },
@@ -174,15 +175,10 @@
       ".RData": true,
       ".Rproj.user": true,
       ".Rhistory": true,
-      "ddr*.md": true,
       "**/CVS": true,
       "*_files": true,
-      "_datasets": true,
-      "_docs": true,
-      "_imgs": true,
-      "_includes": true,
-      "_template": true,
-      "rsconnect": true
+      "rsconnect": true,
+      "packrat": true
     },
     "eslint.alwaysShowStatus": true
   },

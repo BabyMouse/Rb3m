@@ -1,4 +1,5 @@
 /**
+ ** ESLint: dbaeumer.vscode-eslint
  * ref: https://eslint.org/docs/user-guide/configuring
  * ref: https://eslint.org/docs/rules/
  * ref: https://www.npmjs.com/package/eslint-config-prettier

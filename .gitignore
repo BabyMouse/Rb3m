@@ -38,9 +38,9 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 #
-# Content packages for R/ RStudio
+# Packages for R/ RStudio
 packrat/lib*/
 packrat/src/
 #
-# Content packages for VSCode extensions
+# Packages for VSCode extensions
 node_modules

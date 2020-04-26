@@ -1,4 +1,5 @@
 /**
+ ** Prettier - Code formatter: esbenp.prettier-vscode
  * ref: https://prettier.io/docs/en/configuration.html
  * ref: https://prettier.io/docs/en/options.html
  */
@@ -39,7 +40,7 @@ module.exports = {
       }
     },
     {
-      files: ['*.json', '*.code-workspace', '.eslintrc'],
+      files: ['*.json', '*.code-workspace', '.eslintrc', '.markdownlintrc'],
       options: {
         printWidth: 150,
         tabWidth: 2,

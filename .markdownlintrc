@@ -1,0 +1,13 @@
+/**
+ ** markdownlint: davidanson.vscode-markdownlint
+ * ref: https://github.com/DavidAnson/markdownlint
+ * ref: https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md
+ * ref: https://help.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax
+ * ref: https://github.github.com/gfm/
+ */
+{
+  "no-inline-html": false,
+  "no-emphasis-as-heading": false,
+  "line-length": false,
+  "no-empty-links": false
+}
