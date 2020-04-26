@@ -1,0 +1,199 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    /**
+     ** Provides CSS class name completion for the HTML class attribute
+     ** based on the definitions found in your workspace
+     ** or external files referenced through the link element.
+     *  ref: https://marketplace.visualstudio.com/items?itemName=Zignd.html-css-class-completion
+     *  ref: https://git-scm.com/docs/gitignore#_pattern_format
+     *
+     */
+    "html-css-class-completion.includeGlobPattern": "**/_includes/**/*.{css,html}",
+    //"html-css-class-completion.excludeGlobPattern": "**/*_file/**/*.{css,html}"
+
+    /**
+     ** The Better Comments extension will help you create more human-friendly comments in your code.
+     *  ref: https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments
+     */
+    "better-comments.highlightPlainText": true,
+    "better-comments.multilineComments": true,
+    "better-comments.tags": [
+      {
+        "tag": "!",
+        "color": "#FF2D00",
+        "strikethrough": false,
+        "backgroundColor": "transparent"
+      },
+      {
+        "tag": "?",
+        "color": "#3498DB",
+        "strikethrough": false,
+        "backgroundColor": "transparent"
+      },
+      {
+        "tag": "//",
+        "color": "#474747",
+        "strikethrough": true,
+        "backgroundColor": "transparent"
+      },
+      {
+        "tag": "todo",
+        "color": "#FF8C00",
+        "strikethrough": false,
+        "backgroundColor": "transparent"
+      },
+      {
+        "tag": "*",
+        "color": "#ff00ff",
+        "strikethrough": false,
+        "backgroundColor": "transparent"
+      },
+      {
+        "tag": "ref",
+        "color": "#7a7a7a",
+        "strikethrough": false,
+        "backgroundColor": "transparent"
+      }
+    ],
+
+    /**
+     ** Looking for colors and generate a colored background (using the color)
+     *  ref: https://marketplace.visualstudio.com/items?itemName=kamikillerto.vscode-colorize
+     */
+    "colorize.languages": ["javascript", "css", "html", "json", "jsonc", "template"],
+    "colorize.files_extensions": [".js", ".css", ".html", ".json", ".template"],
+    "colorize.include": ["javascript", "css", "html", "json"],
+    "colorize.colorize_only_visible_beta": true,
+    "colorize.enable_search_variables": false,
+    "colorize.hide_current_line_decorations": false,
+    "colorize.ignore_files_extensions_deprecation": true,
+
+    /**
+     ** Sort CSS rules content with specified order
+     *  ref: https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-postcss-sorting
+     */
+    "postcssSorting.config": {
+      "order": ["custom-properties", "dollar-variables", "declarations", "at-rules", "rules"],
+      "properties-order": [
+        "color",
+        "background",
+        "background-color",
+        "background-image",
+        "background-clip",
+        "font",
+        "font-style",
+        "font-variant",
+        "font-weight",
+        "font-stretch",
+        "font-size",
+        "line-height",
+        "font-family",
+        "text-align",
+        "display",
+        "height",
+        "min-height",
+        "max-height",
+        "width",
+        "min-width",
+        "max-width",
+        "box-sizing",
+        "border",
+        "border-width",
+        "border-style",
+        "border-color",
+        "border-radius",
+        "border-top",
+        "border-right",
+        "border-bottom",
+        "border-left",
+        "box-shadow",
+        "overflow",
+        "overflow-x",
+        "overflow-y",
+        "content",
+        "justify-content",
+        "position",
+        "top",
+        "right",
+        "bottom",
+        "left",
+        "margin",
+        "margin-top",
+        "margin-right",
+        "margin-bottom",
+        "margin-left",
+        "padding",
+        "padding-top",
+        "padding-right",
+        "padding-bottom",
+        "padding-left",
+        "float",
+        "z-index"
+      ]
+    },
+    /**
+     ** VSCode setting
+     *  ref: https://code.visualstudio.com/docs/getstarted/settings
+     */
+    "files.associations": {
+      ".eslintrc": "jsonc",
+      "*.theme": "jsonc",
+      "*.Rmd": "markdown"
+    },
+    "[html]": {
+      //"editor.formatOnSave": false
+    },
+    "[markdown]": {
+      "editor.fontFamily": "Consolas, 'Courier New', monospace",
+      "editor.wordWrap": "on",
+      "editor.quickSuggestions": false
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.fontFamily": "Fira Code, Consolas, 'Courier New', monospace",
+    "editor.fontLigatures": true,
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [100, 150, 180],
+    "editor.tabCompletion": "on",
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "standard._legacyModuleResolve": true,
+    "standard.autoFixOnSave": true,
+    "window.title": "${dirty}${activeEditorShort}${separator}${rootName}${separator}${rootPath}${separator}${appName}",
+    "files.exclude": {
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/.DS_Store": true,
+      ".RData": true,
+      ".Rproj.user": true,
+      ".Rhistory": true,
+      "ddr*.md": true,
+      "**/CVS": true,
+      "*_files": true,
+      "_datasets": true,
+      "_docs": true,
+      "_imgs": true,
+      "_includes": true,
+      "_template": true,
+      "rsconnect": true
+    },
+    "eslint.alwaysShowStatus": true
+  },
+  "extensions": {
+    "recommendations": [
+      "aaron-bond.better-comments",
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "kamikillerto.vscode-colorize",
+      "mrmlnc.vscode-postcss-sorting",
+      "zignd.html-css-class-completion"
+    ]
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "rb3m",
+  "version": "1.0.0",
+  "description": "Some package for VSCode extensions.",
+  "main": ".prettierrc.js",
+  "directories": {
+    "man": "man"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BabyMouse/Rb3m.git"
+  },
+  "keywords": [
+    "Rb3m",
+    "R",
+    "RMarkdown",
+    "Template"
+  ],
+  "author": "Baby Mouse",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BabyMouse/Rb3m/issues"
+  },
+  "homepage": "https://github.com/BabyMouse/Rb3m#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "prettier": "2.0.5"
+  }
+}
