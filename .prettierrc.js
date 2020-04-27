@@ -20,6 +20,15 @@ module.exports = {
       }
     },
     {
+      files: ['*.css'],
+      options: {
+        printWidth: 180,
+        tabWidth: 2,
+        bracketSpacing: true,
+        singleQuote: true
+      }
+    },
+    {
       files: ['*.js', '*.prettierrc.js'],
       options: {
         printWidth: 180,
@@ -31,21 +40,20 @@ module.exports = {
       }
     },
     {
-      files: ['*.css'],
-      options: {
-        printWidth: 180,
-        tabWidth: 2,
-        bracketSpacing: true,
-        singleQuote: true
-      }
-    },
-    {
-      files: ['*.json', '*.code-workspace', '.eslintrc', '.markdownlintrc'],
+      files: ['*.json', 'jonc', '*.code-workspace', '.eslintrc', '.markdownlintrc'],
       options: {
         printWidth: 150,
         tabWidth: 2,
         trailingComma: 'none',
         singleQuote: true
+      }
+    },
+    {
+      files: ['*.md'],
+      options: {
+        proseWrap: 'never'
+        //htmlWhitespaceSensitivity: 'strict'
+        //endOfLine: 'crlf'
       }
     }
   ]

@@ -136,6 +136,7 @@
         "z-index"
       ]
     },
+    "eslint.alwaysShowStatus": true,
     /**
      ** VSCode setting
      *  ref: https://code.visualstudio.com/docs/getstarted/settings
@@ -150,10 +151,12 @@
       //"editor.formatOnSave": false
     },
     "[markdown]": {
-      "editor.fontFamily": "Consolas, 'Courier New', monospace",
-      "editor.wordWrap": "on",
-      "editor.quickSuggestions": false
+      "editor.fontFamily": "Consolas, 'Courier New', monospace"
+      //"editor.wordWrap": "on",
+      //"editor.quickSuggestions": false,
+      //"files.trimTrailingWhitespace": false
     },
+    //"markdown.styles": [".vscode/style.css"],
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.fontFamily": "Fira Code, Consolas, 'Courier New', monospace",
     "editor.fontLigatures": true,
@@ -164,8 +167,6 @@
     "editor.tabCompletion": "on",
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
-    "standard._legacyModuleResolve": true,
-    "standard.autoFixOnSave": true,
     "window.title": "${dirty}${activeEditorShort}${separator}${rootName}${separator}${rootPath}${separator}${appName}",
     "files.exclude": {
       "**/.git": true,
@@ -179,8 +180,7 @@
       "*_files": true,
       "rsconnect": true,
       "packrat": true
-    },
-    "eslint.alwaysShowStatus": true
+    }
   },
   "extensions": {
     "recommendations": [

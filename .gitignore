@@ -44,3 +44,6 @@ packrat/src/
 #
 # Packages for VSCode extensions
 node_modules
+#
+# Temporary config files
+.markdownlintrc

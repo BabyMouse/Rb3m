@@ -14,9 +14,9 @@
       "error",
       {
         "beforeBlockComment": true,
-        "afterBlockComment": true,
+        //"afterBlockComment": true,
         "beforeLineComment": true,
-        "afterLineComment": true,
+        //"afterLineComment": true,
         "allowBlockStart": true,
         "allowBlockEnd": true,
         "allowObjectStart": true,
