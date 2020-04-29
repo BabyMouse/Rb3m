@@ -1,6 +1,7 @@
 {
   "folders": [
     {
+      "name": "Rb3m",
       "path": "."
     }
   ],
@@ -167,7 +168,7 @@
     "editor.tabCompletion": "on",
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
-    "window.title": "${dirty}${activeEditorShort}${separator}${rootName}${separator}${rootPath}${separator}${appName}",
+    "window.title": "${dirty}${activeFolderLong}${separator}${rootName}${separator}${appName}",
     "files.exclude": {
       "**/.git": true,
       "**/.svn": true,
