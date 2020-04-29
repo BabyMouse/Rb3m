@@ -1,0 +1,256 @@
+/**
+*! Style này chỉ dành cho RMarkdown không xài Theme.
+** - Common.
+*/
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  /**
+   ** Geneva: Apple
+   ** 'Segoe UI', Verdana, Tahoma: Microsoft
+   ** Helvetica: Adobe
+   *  ref: http://www.identifont.com
+   */
+  font-family: Geneva, 'Segoe UI', Verdana, Tahoma, 'Helvetica Neue', Helvetica, sans-serif;
+  font-size: 20px;
+}
+
+code,
+kbd,
+pre,
+samp {
+  /**
+   ** Monaco: Apple
+   ** Consolas: Microsoft
+   *  ref: http://www.identifont.com
+   */
+  font-family: Monaco, Consolas, monospace;
+}
+
+body {
+  color: #333;
+  background-color: #fff;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+header {
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+a {
+  color: #337ab7;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:focus,
+a:hover {
+  color: #23527c;
+  text-decoration: underline;
+}
+
+.btn-group-vertical > .btn-group::after,
+.btn-group-vertical > .btn-group::before,
+.btn-toolbar::after,
+.btn-toolbar::before,
+.clearfix::after,
+.clearfix::before,
+.container-fluid::after,
+.container-fluid::before,
+.container::after,
+.container::before,
+.dl-horizontal dd::after,
+.dl-horizontal dd::before,
+.form-horizontal .form-group::after,
+.form-horizontal .form-group::before,
+.modal-footer::after,
+.modal-footer::before,
+.nav::after,
+.nav::before,
+.navbar-collapse::after,
+.navbar-collapse::before,
+.navbar-header::after,
+.navbar-header::before,
+.navbar::after,
+.navbar::before,
+.pager::after,
+.pager::before,
+.panel-body::after,
+.panel-body::before {
+  display: table;
+  content: ' ';
+}
+
+.container-fluid {
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.main-container {
+  max-width: 96% !important;
+}
+
+.txt-cursor-pointer {
+  color: #777;
+  font-weight: 600;
+  line-height: 20px;
+  display: inline-block;
+  padding-top: 20px;
+  padding-right: 5px;
+  cursor: pointer;
+  vertical-align: baseline;
+}
+
+.txt-cursor-pointer:hover {
+  color: #000;
+}
+
+.txt-xs {
+  font-size: 1rem;
+}
+
+.title {
+  color: #22b15d;
+  font-weight: 600;
+  font-size: 2.5rem;
+  margin-bottom: 0px;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  margin: 5px 0px 0px 10px;
+}
+
+.author {
+  font-size: 1.5rem;
+  margin: 25px 0px 0px 10px;
+}
+
+.date {
+  font-size: 1.5rem;
+  margin: 5px 0px 0px 10px;
+}
+
+p.abstract {
+  text-align: center;
+}
+
+div.abstract {
+  width: 90%;
+  margin: auto;
+}
+
+.level1 {
+  margin: 30px 0px 5px 0px;
+}
+
+h1 {
+  font-weight: 900;
+  font-size: 2.3rem;
+}
+
+.logs {
+  margin-top: 5px;
+}
+
+.logs-caption {
+  color: #fff;
+  background-image: linear-gradient(#5b6676, #7a7a7a, #6b7686);
+  font-weight: 600;
+  width: calc(100% + 4px);
+  border: solid 2px #fafafa;
+  border-radius: 0.3rem 0.3rem 0rem 0rem;
+  margin-left: -2px;
+  padding: 5px 10px 5px 10px;
+}
+
+.logs-content {
+  color: #304e6d;
+  background-color: #f3f6fa;
+  line-height: 1.25;
+  border: solid 2px #dce6f0;
+  border-radius: 0rem 0rem 0.3rem 0.3rem;
+  margin-top: -2px;
+  padding: 10px;
+  word-wrap: break-word;
+}
+
+.logs-content > p {
+  margin: 10px 5px 5px 5px;
+}
+
+.level2 {
+  margin: 20px 0px 5px 0px;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: 1.9rem;
+}
+
+.level3 {
+  margin: 10px 0px 5px 0px;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.level3 > :not(h3) {
+  margin-left: 0px;
+}
+
+.level4 {
+  margin: 10px 0px 10px 20px;
+}
+
+ul {
+  margin-top: 15px;
+  margin-bottom: 0px;
+}
+
+li {
+  margin-top: 15px;
+  margin-bottom: 0px;
+}
+
+p {
+  margin-top: 15px;
+  margin-bottom: 0px;
+}
+
+hr {
+  background-color: #aaa;
+  background-image: linear-gradient(to right, #eee, #aaa, #eee);
+  height: 2px;
+}
+
+img {
+  border: solid 1px #304e6d;
+}
+
+.scroll {
+  height: 200px;
+  overflow-y: scroll;
+}
+
+.update {
+  color: #287a17;
+  font-size: 1rem;
+}

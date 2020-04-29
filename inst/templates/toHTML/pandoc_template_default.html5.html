@@ -1,0 +1,179 @@
+$--
+$-- Pandoc Template
+$-- - https://pandoc.org/MANUAL.html#templates
+$-- - https://github.com/jgm/pandoc-templates
+$-- Source: RMarkdown package v2.1, https://github.com/rstudio/rmarkdown/tree/master/inst/rmd/h/default.html
+$--
+<!DOCTYPE html>
+<html$if(lang)$ lang="$lang$" xml:lang="$lang$"$endif$>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  $for(author-meta)$<meta name="author" content="$author-meta$" />$endfor$
+  $if(date)$<meta name="date-created" content="$date$" />$endif$ $-- ?base::strptime
+  $if(date-meta)$<meta name="last-updated" content="$date-meta$" />$endif$
+  <title>$if(title-prefix)$$title-prefix$ - $endif$$pagetitle$</title>
+$for(header-includes)$
+  $header-includes$
+$endfor$
+$if(kable-scroll)$
+<!-- kable-scroll -->
+<style type="text/css">
+.kable-table {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: auto;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-bottom: 20px;
+  max-height: 350px;
+}
+
+.kable-table table {
+  margin-bottom: 0px;
+}
+
+.kable-table table>thead>tr>th {
+  border: none;
+  border-bottom: 2px solid #dddddd;
+}
+
+.kable-table table>thead {
+  background-color: #fff;
+}
+</style>
+$endif$ $-- kable-scroll
+$for(css)$<link rel="stylesheet" href="$css$" $if(html5)$$else$type="text/css" $endif$ />$endfor$
+$if(code_menu)$
+  <script>
+    /**
+    ** Code menu
+    ** - Code Folding
+    ** - Source Embed
+    */
+    document.addEventListener('readystatechange', function() { if(document.readyState === "complete") initializeCodeFolding(true); });
+    document.addEventListener('readystatechange', function() { if(document.readyState === "complete") initializeSourceEmbed(); });
+  </script>
+$elseif(code_folding)$
+  <script>
+    /**
+    ** Code menu
+    ** - Code Folding
+    ** - Source Embed
+    */
+    document.addEventListener('readystatechange', function() { if (document.readyState === "complete") initializeCodeFolding("$code_folding$" === "show"); });
+  $if(source_embed)$
+    document.addEventListener('readystatechange', function() { if (document.readyState === "complete") initializeSourceEmbed(); });$endif$
+  </script>
+$elseif(source_embed)$
+  <script>
+    /**
+    ** Code menu
+    ** - Source Embed
+    */
+    document.addEventListener('readystatechange', function () {
+      if (document.readyState === "complete") {
+        /**
+        ** Handlers for show/ hide Code menu
+        */
+        document.querySelector("button.dropdown-toggle").addEventListener("click", btnMenuCode_Handler);
+        window.addEventListener("click", function (elm) {
+          window_Handler(elm);
+        });
+        // Handlers for SourceEmbed
+        initializeSourceEmbed();
+      }
+    });
+  </script>$endif$ $-- code_menu
+$if(kable-scroll)$  <script>
+    /**
+    ** Kable scroll
+    */
+    $$(document).ready(function() {
+      $$('.knitsql-table').addClass('kable-table');
+      var container = $$('.kable-table');
+      container.each(function() {
+
+        // move the caption out of the table
+        var table = $$(this).children('table');
+        var caption = table.children('caption').detach();
+        caption.insertBefore($$(this)).css('display', 'inherit');
+      });
+    });
+  </script>$endif$ $-- kable-scroll
+$if(mathjax-url)$  <script>
+    /**
+    ** MathJax URL: Dynamically load MathJax for compatibility with self-contained
+    */
+    (function() {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = "$mathjax-url$";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>$endif$ $-- mathjax-url
+</head>
+
+<body>
+  <div class="container-fluid main-container">
+$for(include-before)$  $include-before$$endfor$
+    <header id="header" class="fluid-row">
+$if(code_menu)$
+      <div class="btn-group pull-right">
+        <button type="button" class="btn-default btn-xs dropdown-toggle"><span>Code</span> <span class="caret"></span></button>
+        <ul class="dropdown-menu" hidden>
+          <li><a id="show-all-code" href="#">Show All Code</a></li>
+          <li><a id="hide-all-code" href="#">Hide All Code</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a id="download-rmd-source" href="#">Download Rmd</a></li>
+        </ul>
+      </div>
+$elseif(code_folding)$
+      <div class="btn-group pull-right">
+        <button type="button" class="btn-default btn-xs dropdown-toggle"><span>Code</span> <span class="caret"></span></button>
+        <ul class="dropdown-menu" hidden>
+          <li><a id="show-all-code" href="#">Show All Code</a></li>
+          <li><a id="hide-all-code" href="#">Hide All Code</a></li>$if(source_embed)$
+          <li role="separator" class="divider"></li>
+          <li><a id="download-rmd-source" href="#">Download Rmd</a></li>$endif$ $-- source_embed
+        </ul>
+      </div>
+$elseif(source_embed)$
+      <div class="btn-group pull-right">
+        <button type="button" class="btn-default btn-xs dropdown-toggle"><span>Code</span> <span class="caret"></span></button>
+        <ul class="dropdown-menu" hidden>
+          <li><a id="download-rmd-source" href="#">Download Rmd</a></li>
+        </ul>
+      </div>$endif$ $-- code_menu
+$if(title)$
+      <div class="title toc-ignore">$title$</div>$endif$ $-- title
+$if(subtitle)$
+      <div class="subtitle">$subtitle$</div>$endif$ $-- subtitle
+$for(author)$
+$if(author.name)$
+      <div class="author">$author.name$</div>
+$if(author.affiliation)$
+      <address class="author_afil">$author.affiliation$<br>
+$if(author.email)$
+        <a class="author_email" href="mailto:#">$author.email$</a>$endif$ $-- author.email
+      </address>$endif$ $-- author.affiliation
+$else$
+      <div class="author">$author$</div>$endif$ $-- author.name
+$endfor$ $-- author
+$if(date)$
+      <div class="date">$date$</div>$endif$ $-- date
+$if(date-meta)$
+      <div class="date">$date-meta$</div>$endif$ $-- date-meta
+$if(abstract)$
+      <div class="abstract">
+        <p class="abstract">Abstract</p>
+        <span>$abstract$</span>
+      </div>$endif$ $-- abstract
+    </header>
+$body$
+$for(include-after)$    $include-after$$endfor$
+  </div>
+</body>
+</html>

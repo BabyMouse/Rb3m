@@ -1,0 +1,227 @@
+/**
+*! Style này chỉ dành cho RMarkdown không xài Theme.
+** - Code button in Navigate bar.
+** - Show/ Hide source code.
+*/
+button,
+select {
+  text-transform: none;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  margin: 0;
+}
+
+button {
+  font-weight: 400;
+  line-height: 1.3;
+  text-align: center;
+  border-radius: 4px;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  touch-action: manipulation;
+  cursor: pointer;
+  user-select: none;
+}
+
+button.active,
+button:active {
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  outline: 0;
+}
+
+button.active.focus,
+button.active:focus,
+button.focus,
+button:active.focus,
+button:active:focus,
+button:focus {
+  background: radial-gradient(#fff, #e6e6e6);
+  outline: thin dotted;
+  outline-offset: -2px;
+}
+
+button .caret {
+  margin-left: 0;
+}
+
+button.dropdown-toggle span {
+  font-size: 1.1rem;
+}
+
+.btn-group,
+.btn-group-vertical {
+  display: inline-block;
+  position: relative;
+}
+
+.btn-group:last-child {
+  align-self: center;
+}
+
+.btn-group > .btn:first-child {
+  margin-left: 0;
+}
+
+.btn-group-vertical > .btn,
+.btn-group > .btn {
+  position: relative;
+  float: left;
+}
+
+.btn-group-xs > .btn,
+.btn-xs {
+  padding: 1px 5px;
+}
+
+.pull-right {
+  float: right;
+}
+
+.caret {
+  display: inline-block;
+  height: 0;
+  width: 0;
+  border-top: 4px dashed;
+  border-top: 4px solid;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+  margin-left: 2px;
+  vertical-align: middle;
+}
+
+.btn-default {
+  color: #fff;
+  background-image: linear-gradient(to top, #01a9b4, #1dc1cf);
+  border: 1px solid #387496;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
+}
+
+.btn-default:hover {
+  color: #fff;
+  background-image: linear-gradient(to top, #4290c1, #60a9d4);
+  border-color: #adadad;
+}
+
+.btn-default.active,
+.btn-default:active,
+.open > .dropdown-toggle.btn-default {
+  color: #333;
+  background-color: #e6e6e6;
+  background-image: none;
+  border-color: #adadad;
+}
+
+.btn-default.focus,
+.btn-default:focus {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #8c8c8c;
+}
+
+.pull-right > .dropdown-menu {
+  right: 0;
+  left: auto;
+}
+
+.dropdown-menu {
+  background-color: #fff;
+  background-clip: padding-box;
+  text-align: left;
+  min-width: 50px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin: 2px 0 0;
+  padding: 5px 0;
+  float: left;
+  z-index: 1000;
+  list-style: none;
+}
+
+.dropdown-menu * {
+  font-size: 1.1rem;
+}
+
+.dropdown-menu > li {
+  margin: 0px;
+}
+
+.dropdown-menu > li > a {
+  color: #333;
+  font-weight: 400;
+  /*line-height: 1.5;*/
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  white-space: nowrap;
+}
+
+.dropdown-menu > li > a:focus,
+.dropdown-menu > li > a:hover {
+  color: #262626;
+  background-color: #d1ebde;
+  text-decoration: none;
+}
+
+.dropdown-menu .divider {
+  background-color: #e5e5e5;
+  height: 1px;
+  overflow: hidden;
+  margin: 9px 0;
+}
+
+.sourceCode {
+  overflow-x: auto;
+}
+
+.code-box-bar {
+  background-color: #d2dbe4 /*beige*/;
+  width: 100%;
+  border: 1px solid #ccc;
+  position: relative;
+  margin-top: 5px;
+  padding: 5px;
+  float: left;
+  display: flex;
+  justify-content: space-between;
+}
+
+.code-box-bar span {
+  font-size: 1.1rem;
+}
+
+.code-box-label {
+  display: flex;
+  position: relative;
+  line-height: 1;
+  align-content: center;
+}
+
+.code-box-label:first-child {
+  align-self: center;
+}
+
+.sourceCode-index {
+  font-weight: 500;
+  margin-right: 5px;
+}
+
+.sourceCode-lang {
+  color: #01a9b4;
+  margin-left: 10px;
+}
+
+.code-box-btn {
+}
+
+#rmd-source-code {
+  display: none;
+}

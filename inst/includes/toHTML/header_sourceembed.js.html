@@ -1,0 +1,13 @@
+<script>
+  /**
+   ** Embed RMarkdown file to HTML output file.
+   ** Source: https://github.com/rstudio/rmarkdown/blob/master/inst/rmd/h/navigation-1.1/sourceembed.js
+   */
+  function initializeSourceEmbed() {
+    let source = document.getElementById('embed-rmd-file');
+    let rmd = document.getElementById('download-rmd-source');
+    rmd.href = source.href;
+    rmd.download = source.download;
+    source.remove();
+  }
+</script>

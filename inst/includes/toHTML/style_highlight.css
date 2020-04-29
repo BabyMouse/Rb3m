@@ -1,0 +1,246 @@
+/**
+*! Style này chỉ dành cho RMarkdown không xài Theme.
+** - Highlight.
+*/
+p > code,
+li > code {
+  border: solid 1px #efeee6;
+}
+
+code {
+  color: #000000;
+  background-color: #f9f2f4;
+  display: inline;
+  border-radius: 2px;
+  padding: 2px 4px;
+  white-space: pre-wrap;
+}
+
+code.redmark {
+  color: #c7254e;
+  background-color: #f9f2f4;
+}
+
+pre {
+  color: #333;
+  background-color: #fcfcfc;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: auto;
+  margin: 0 0 10px;
+  padding: 9.5px;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+pre.sourceCode {
+  margin: 0;
+}
+
+pre code {
+  color: inherit;
+  background-color: transparent;
+  font-size: inherit;
+  border-radius: 0;
+  padding: 0;
+  white-space: pre-wrap;
+}
+
+pre > code.sourceCode {
+  position: relative;
+  white-space: pre;
+}
+
+pre > code.sourceCode > span {
+  line-height: 1.25;
+  display: inline-block;
+}
+
+pre > code.sourceCode > span:empty {
+  height: 1.2em;
+}
+
+code.sourceCode > span {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+div.sourceCode {
+  margin: 0 0 0.5em 0;
+}
+
+@media screen {
+  div.sourceCode {
+    overflow: auto;
+  }
+}
+
+@media print {
+  pre > code.sourceCode {
+    white-space: pre-wrap;
+  }
+
+  pre > code.sourceCode > span {
+    padding-left: 5em;
+    text-indent: -5em;
+  }
+}
+
+pre.numberSource code {
+  counter-reset: source-line 0;
+}
+
+pre.numberSource code > span {
+  position: relative;
+  left: -4em;
+  counter-increment: source-line;
+}
+
+pre.numberSource code > span > a:first-child::before {
+  color: #aaaaaa;
+  text-align: right;
+  display: inline-block;
+  width: 4em;
+  border: none;
+  content: counter(source-line);
+  position: relative;
+  left: -1em;
+  padding: 0 4px;
+  vertical-align: baseline;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+pre.numberSource {
+  border-left: 1px solid #aaaaaa;
+  margin-left: 3em;
+  padding-left: 4px;
+}
+
+@media screen {
+  pre > code.sourceCode > span > a:first-child::before {
+    text-decoration: underline;
+  }
+}
+
+/* Alert */
+code span.al {
+  color: #ff0000;
+}
+
+/* Annotation */
+code span.an {
+  color: #008000;
+}
+
+/* Attribute */
+code span.at {
+}
+
+/* BuiltIn */
+code span.bu {
+}
+
+/* ControlFlow */
+code span.cf {
+  color: #0000ff;
+}
+
+/* Char */
+code span.ch {
+  color: #008080;
+}
+
+/* Constant */
+code span.cn {
+}
+
+/* Comment */
+code span.co {
+  color: #008000;
+}
+
+/* CommentVar */
+code span.cv {
+  color: #008000;
+}
+
+/* Documentation */
+code span.do {
+  color: #008000;
+}
+
+/* Error */
+code span.er {
+  color: #ff0000;
+  font-weight: bold;
+}
+
+/* Extension */
+code span.ex {
+}
+
+/* Import */
+code span.im {
+}
+
+/* Information */
+code span.in {
+  color: #008000;
+}
+
+/* Keyword */
+code span.kw {
+  color: #0000ff;
+}
+
+/* Operator */
+code span.op {
+}
+
+/* Other */
+code span.ot {
+  color: #ff4000;
+}
+
+/* Preprocessor */
+code span.pp {
+  color: #ff4000;
+}
+
+/* SpecialChar */
+code span.sc {
+  color: #008080;
+}
+
+/* SpecialString */
+code span.ss {
+  color: #008080;
+}
+
+/* String */
+code span.st {
+  color: #008080;
+}
+
+/* Variable */
+code span.va {
+}
+
+/* VerbatimString */
+code span.vs {
+  color: #008080;
+}
+
+/* Warning */
+code span.wa {
+  color: #008000;
+  font-weight: bold;
+}
