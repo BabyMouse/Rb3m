@@ -1,5 +1,5 @@
-setwd("F:/R/Projects/Rb3m")
+if (length(find.package("Rb3m", quiet = TRUE)) != 0) devtools::uninstall(pkg = ".")
+devtools::load_all()
 devtools::document()
-setwd("F:/R/Projects")
-devtools::install("Rb3m")
-
+#devtools::install(pkg = ".")
+devtools::install(pkg = ".", quick = TRUE)
