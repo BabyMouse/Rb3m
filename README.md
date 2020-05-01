@@ -4,11 +4,11 @@
 
 - Trát Quang Thụy
 - Ngày tạo: 2020-04-28
-- Cập nhật: 2020-04-28
+- Cập nhật: 2020-05-01
 
 ---
 
-<font color=#ff0000>**_Rb3m đang trong giai đoạn thiết kế._**</font>
+**_Rb3m đang trong giai đoạn thiết kế._**
 
 ## Cài đặt trong `R/ RStudio`
 
