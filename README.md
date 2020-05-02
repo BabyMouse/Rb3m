@@ -4,7 +4,7 @@
 
 - Trát Quang Thụy
 - Ngày tạo: 2020-04-28
-- Cập nhật: 2020-05-01
+- Cập nhật: 2020-05-03
 
 ---
 
@@ -40,4 +40,12 @@
 
 ### Rb3m Template design
 
-- https://www.evernote.com/l/Am6Qu1VKrrdNb4KhHle5a3aSKRSezLGC8mQ/
+- <https://www.evernote.com/l/Am6Qu1VKrrdNb4KhHle5a3aSKRSezLGC8mQ/>
+
+---
+
+## Known issues
+
+- Về hiển thị **`Unicode`**
+  - Không xài được Unicode trong cửa sổ `RStudio/ R Markdown`.
+  - Không xài được Unicode với roxygen2 (<https://github.com/r-lib/roxygen2>).

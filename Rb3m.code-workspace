@@ -157,6 +157,10 @@
       //"editor.quickSuggestions": false,
       //"files.trimTrailingWhitespace": false
     },
+    "[plaintext]": {
+      "editor.fontFamily": "Consolas, 'Courier New', monospace"
+    },
+    "window.zoomLevel": 1,
     //"markdown.styles": [".vscode/style.css"],
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.fontFamily": "Fira Code, Consolas, 'Courier New', monospace",
