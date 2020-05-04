@@ -1,8 +1,7 @@
 #' Embed a file
 #'
 #' @export
-embed_file_a <- function(
-                         file,
+embed_file_a <- function(file,
                          name = basename(file),
                          text = paste("Download", name),
                          ...) {
