@@ -1,12 +1,14 @@
 Package: Rb3m
 Type: Package
-Title: Rb3m template package for RMarkdown
+Title: Rb3m package
 Version: 0.1.0
+Date: 2020-05-05
 Author: Trát Quang Thụy
 Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Description: Rb3m is template package for RMarkdown to tranlate from Rmd file to HTML file.
+License: Unlicense + file LICENSE
+URL: <https://github.com/BabyMouse/Rb3m>
 Encoding: UTF-8
+Language: en, vi
 LazyData: true
 RoxygenNote: 7.1.0
