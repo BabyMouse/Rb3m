@@ -1,10 +1,85 @@
-#' Knit to HTML file.
-#' @encoding UTF-8
+#' @title Config some options for Knitr tranlate Rmd file to HTML file
 #'
-#' @param toc T<U+u1ED9>i
-#' &#9986; t&ocirc;i
+#' @description
+#' This function inherit from \code{rmarkdown::html_document} function to config some options for Knitr tranlate Rmd file to HTML file.
+#'
 #' @export
-toHTML <- function(toc = FALSE,
+#'
+#' @usage
+#'
+#' rmd_to_html(df_print)
+#' rmd_to_html(df_print, keep_md)
+#'
+#' @param toc Not config option.
+#' @param toc_depth Not config option.
+#'
+#' @inheritParams rmarkdown::html_document
+#'
+#' @details
+#'
+#' Details for some things.
+#'
+#' @return
+#'
+#' Return HTML file in same folder of Rmd file.
+#'
+#' @section A Custom Section:
+#'
+#' Text accompanying the custom section.
+#'
+#' @note
+#' \itemize{
+#'   \item{Don't run directly.}
+#'   \item{Passing value throught header of Rmd file.
+#'     \describe{
+#'       \item{Example}{}
+#'       \item{}{\preformatted{
+#' ---
+#' output: Rb3m::rmd_to_html
+#'   keep_md: yes
+#' ---}
+#'       }
+#'     }
+#'   }
+#' }
+#'
+#' @author
+#'   \describe{
+#'     \item{}{Trát Quang Thụy}
+#'   }
+#'
+#' @source
+#'   \itemize{
+#'     \item \href{https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html}{https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html}
+#'   }
+#'
+#' @references
+#'   \describe{
+#'     \item{label-1}{text-1}
+#'     \item{label-2}{text-2}
+#'   }
+#'
+#' @seealso
+#'
+#' \itemize{
+#'   \item \href{https://github.com/BabyMouse/Rb3m}{GitHub: https://github.com/BabyMouse/Rb3m}
+#'   \item \href{http://r-pkgs.had.co.nz/man.html}{http://r-pkgs.had.co.nz/man.html}
+#' }
+#'
+#' @examples
+#' add_numbers(1, 2) ## returns 3
+#'
+#' ## don't run this in calls to 'example(add_numbers)'
+#' \dontrun{
+#'    add_numbers(2, 3)
+#' }
+#'
+#' ## don't test this during 'R CMD check'
+#' \donttest{
+#'    add_numbers(4, 5)
+#' }
+#'
+rmd_to_html <- function(toc = FALSE,
                    toc_depth = 3,
                    toc_float = FALSE,
                    number_sections = FALSE,
@@ -31,6 +106,9 @@ toHTML <- function(toc = FALSE,
                    md_extensions = NULL,
                    pandoc_args = NULL,
                    ...) {
+  # options(useFancyQuotes = FALSE)
+  # enc <- getOption("encoding")
+  # options(encoding = 'UTF-8')
   df_print <- "kable"
   keep_md <- TRUE
   theme <- NULL
@@ -44,7 +122,9 @@ toHTML <- function(toc = FALSE,
   # }
   post_knit <- function(metadata, input_file, runtime, encoding, ...) {
     encoding <<- encoding
-    message("post_knit: ")
+    message("post_knit: ", encoding)
+    # cat(stringi::stri_escape_unicode("This is a bullet \u2022"))
+    # message(xfun::read_utf8(get_pathfile_from_res("resources","messages.txt")))
   }
   pre_processor <- function(metadata, input_file, runtime, knit_meta, files_dir, output_dir) {
     message("pre_processor: ")
@@ -59,6 +139,7 @@ toHTML <- function(toc = FALSE,
   }
   on_exit <- function() {
     message("on_exit: ")
+    # options(encoding = enc)
   }
   rmarkdown::output_format(
     knitr = rmarkdown::knitr_options_html(
@@ -99,7 +180,7 @@ toHTML <- function(toc = FALSE,
     post_knit = post_knit,
     pre_processor = pre_processor,
     intermediates_generator = intermediates_generator,
-    post_processor = NULL,#post_processor(function() encoding),
+    post_processor = NULL, # post_processor(function() encoding),
     on_exit = on_exit,
     base_format = rmarkdown::html_document_base(
       # smart = TRUE,
@@ -111,7 +192,10 @@ toHTML <- function(toc = FALSE,
   )
 }
 
+get_pathfile_from_res <- function(res_folder, res_file) {
+  file.path(system.file(res_folder, package = "Rb3m"), res_file)
+}
+
 build_parg_from_res <- function(res_name, res_folder, res_file) {
-  # base::paste(res_name, file.path(system.file(res_folder, package = "Rb3m"), res_file))
   c(res_name, file.path(system.file(res_folder, package = "Rb3m"), res_file))
 }
