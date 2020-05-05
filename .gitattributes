@@ -1,0 +1,4 @@
+man/* linguist-vendored
+node_modules/* linguist-vendored
+packrat/* linguist-vendored
+tests/* linguist-vendored
