@@ -1,13 +1,13 @@
 ---
-title: "Untitled"
+title: "Tựa đề"
 author: "Trát Quang Thụy"
-date: "4/29/2020"
+date: "Ngày tạo: 2020-05-05"
+date-meta: "Cập nhật: `r format(Sys.time(), '%Y-%m-%d')`"
 output: Rb3m::rmd_to_html
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-message('star...')
 ```
 ```{r echo=FALSE}
 message('star... embed_file_a')

@@ -10,6 +10,8 @@ embed_file_a <- function(file,
 
   # xfun::pkg_load2(c("base64enc", "htmltools", "mime"))
 
+  message('star... paste0')
+
   h <- paste0(
     "data:",
     mime::guess_type(file),

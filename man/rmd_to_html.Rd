@@ -9,8 +9,8 @@
   }
 }
 \usage{
-rmd_to_html(x)
-rmd_to_html(x, y)
+rmd_to_html(df_print)
+rmd_to_html(df_print, keep_md)
 }
 \arguments{
 \item{toc}{Not config option.}
@@ -143,12 +143,12 @@ add_numbers(1, 2) ## returns 3
 
 ## don't run this in calls to 'example(add_numbers)'
 \dontrun{
-   add_numbers(2, 3)
+add_numbers(2, 3)
 }
 
 ## don't test this during 'R CMD check'
 \donttest{
-   add_numbers(4, 5)
+add_numbers(4, 5)
 }
 
 }
@@ -166,6 +166,6 @@ add_numbers(1, 2) ## returns 3
 }
 \author{
 \describe{
-    \item{}{Trát Quang Thụy}
+    \item{}{Trát Quang Th<U+1EE5>y}
   }
 }

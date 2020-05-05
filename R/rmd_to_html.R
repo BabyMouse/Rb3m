@@ -45,7 +45,7 @@
 #'
 #' @author
 #'   \describe{
-#'     \item{}{Trát Quang Thụy}
+#'     \item{}{Trát Quang Th<U+1EE5>y}
 #'   }
 #'
 #' @source
@@ -71,75 +71,81 @@
 #'
 #' ## don't run this in calls to 'example(add_numbers)'
 #' \dontrun{
-#'    add_numbers(2, 3)
+#' add_numbers(2, 3)
 #' }
 #'
 #' ## don't test this during 'R CMD check'
 #' \donttest{
-#'    add_numbers(4, 5)
+#' add_numbers(4, 5)
 #' }
 #'
 rmd_to_html <- function(toc = FALSE,
-                   toc_depth = 3,
-                   toc_float = FALSE,
-                   number_sections = FALSE,
-                   section_divs = TRUE,
-                   fig_width = 7,
-                   fig_height = 5,
-                   fig_retina = 2,
-                   fig_caption = TRUE,
-                   dev = "png",
-                   df_print = "default",
-                   # code_folding = c("none", "show", "hide"),
-                   # code_download = FALSE,
-                   smart = TRUE,
-                   self_contained = TRUE,
-                   theme = "default",
-                   highlight = "default",
-                   mathjax = "default",
-                   template = "default",
-                   extra_dependencies = NULL,
-                   css = NULL,
-                   includes = NULL,
-                   keep_md = FALSE,
-                   lib_dir = NULL,
-                   md_extensions = NULL,
-                   pandoc_args = NULL,
-                   ...) {
-  # options(useFancyQuotes = FALSE)
-  # enc <- getOption("encoding")
-  # options(encoding = 'UTF-8')
+                        toc_depth = 3,
+                        toc_float = FALSE,
+                        number_sections = FALSE,
+                        section_divs = TRUE,
+                        fig_width = 7,
+                        fig_height = 5,
+                        fig_retina = 2,
+                        fig_caption = TRUE,
+                        dev = "png",
+                        df_print = "default",
+                        # code_folding = c("none", "show", "hide"),
+                        # code_download = FALSE,
+                        smart = TRUE,
+                        self_contained = TRUE,
+                        theme = "default",
+                        highlight = "default",
+                        mathjax = "default",
+                        template = "default",
+                        extra_dependencies = NULL,
+                        css = NULL,
+                        includes = NULL,
+                        keep_md = FALSE,
+                        lib_dir = NULL,
+                        md_extensions = NULL,
+                        pandoc_args = NULL,
+                        ...) {
   df_print <- "kable"
   keep_md <- TRUE
   theme <- NULL
   mathjax <- NULL
-  encoding <- NULL
   pre_knit <- function(input, ...) {
-    message("pre_knit: ", input)
+    message("pre_knit:")
+    message(" - input: ", input)
   }
-  # post_knit <- function(metadata, input_file, runtime, ...) {
-  #   message("post_knit: ")
-  # }
   post_knit <- function(metadata, input_file, runtime, encoding, ...) {
-    encoding <<- encoding
-    message("post_knit: ", encoding)
-    # cat(stringi::stri_escape_unicode("This is a bullet \u2022"))
-    # message(xfun::read_utf8(get_pathfile_from_res("resources","messages.txt")))
+    message("post_knit:")
+    message(" - metadata: ", metadata)
+    message(" - input_file: ", input_file)
+    message(" - runtime: ", runtime)
+    message(" - encoding: ", encoding)
   }
   pre_processor <- function(metadata, input_file, runtime, knit_meta, files_dir, output_dir) {
-    message("pre_processor: ")
+    message("pre_processor:")
+    message(" - metadata: ", metadata)
+    message(" - input_file: ", input_file)
+    message(" - runtime: ", runtime)
+    message(" - knit_meta: ", knit_meta)
+    message(" - files_dir: ", files_dir)
+    message(" - output_dir: ", output_dir)
   }
   intermediates_generator <- function(original_input, intermediates_dir) {
-    message("intermediates_generator: ")
+    message("intermediates_generator:")
+    message(" - original_input: ", original_input)
+    message(" - intermediates_dir: ", intermediates_dir)
   }
-  post_processor <- function(encoding) {
-    function(metadata, input_file, output_file, clean, verbose) {
-      message("post_processor: ")
-    }
+  post_processor <- function(metadata, input_file, output_file, clean, verbose) {
+    message("post_processor:")
+    message(" - metadata: ", metadata)
+    message(" - input_file: ", input_file)
+    message(" - output_file: ", output_file)
+    message(" - clean: ", clean)
+    message(" - verbose: ", verbose)
+    structure(output_file, post_process_original = TRUE)
   }
   on_exit <- function() {
-    message("on_exit: ")
-    # options(encoding = enc)
+    message("on_exit:")
   }
   rmarkdown::output_format(
     knitr = rmarkdown::knitr_options_html(
@@ -180,7 +186,7 @@ rmd_to_html <- function(toc = FALSE,
     post_knit = post_knit,
     pre_processor = pre_processor,
     intermediates_generator = intermediates_generator,
-    post_processor = NULL, # post_processor(function() encoding),
+    post_processor = post_processor,#post_processor(function() encoding),
     on_exit = on_exit,
     base_format = rmarkdown::html_document_base(
       # smart = TRUE,
