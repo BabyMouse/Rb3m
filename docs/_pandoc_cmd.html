@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pandoc command args</title>
+    <style>
+      .template-name {
+        color: red;
+        font-weight: 900;
+      }
+      .--template {
+        color: #0000ff;
+        font-weight: 600;
+      }
+      .code-line:hover,
+      .--template:hover {
+        background-color: linen;
+        cursor: pointer;
+      }
+    </style>
+    <script>
+      document.addEventListener('readystatechange', function () {
+        if (document.readyState === 'complete') {
+          let preResult = document.getElementById('result');
+          let text = preResult.innerHTML.replace('\\', '\\\\').split(' --').join('\n --');
+          let arrText = text.split('\n');
+          for (let i = 0; i < arrText.length; i++) {
+            arrText[i] = arrText[i].trim();
+            if (arrText[i] == '') arrText[i] = '<br />';
+            else if (arrText[i].startsWith('[')) arrText[i] = `<span class="template-name">${arrText[i]}</span>`;
+            else if (arrText[i].startsWith('--template')) arrText[i] = `<span class="--template">${arrText[i]}</span>`;
+            else arrText[i] = `<span class="code-line">${arrText[i]}</span>`;
+          }
+          preResult.innerHTML = arrText.join('<br />');
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <pre id="result">
+[Testing]
+"C:/PROGRA~1/Pandoc/pandoc" +RTS -K512m -RTS Rb3m_toHTML.utf8.md --to html5 --from markdown+autolink_bare_uris+tex_math_single_backslash --output Rb3m_toHTML.html --email-obfuscation none --self-contained --standalone --template "E:/My Documents/R/win-library/4.0/Rb3m/templates/toHTML/pandoc_template_default.html5.html" --highlight-style "E:/My Documents/R/win-library/4.0/Rb3m/templates/toHTML/pandoc_highlight_haddock.theme" --css "E:/My Documents/R/win-library/4.0/Rb3m/includes/toHTML/style.css" --css "E:/My Documents/R/win-library/4.0/Rb3m/includes/toHTML/style_navbar.css" --css "E:/My Documents/R/win-library/4.0/Rb3m/includes/toHTML/style_highlight.css" --css "E:/My Documents/R/win-library/4.0/Rb3m/includes/toHTML/style_code_btn.css" --include-in-header "E:/My Documents/R/win-library/4.0/Rb3m/includes/toHTML/header.html" --include-in-header "E:/My Documents/R/win-library/4.0/Rb3m/includes/toHTML/header_navbar.js.html" --include-in-header "E:/My Documents/R/win-library/4.0/Rb3m/includes/toHTML/header_codefolding.js.html" --include-in-header "E:/My Documents/R/win-library/4.0/Rb3m/includes/toHTML/header_sourceembed.js.html" --include-before-body "E:/My Documents/R/win-library/4.0/Rb3m/includes/toHTML/body_prefix.html" --include-before-body "E:/My Documents/R/win-library/4.0/Rb3m/includes/toHTML/body_prefix_navbar.html" --include-after-body "E:/My Documents/R/win-library/4.0/Rb3m/includes/toHTML/body_suffix.html" --variable code_menu --include-in-header "C:\Users\babym\AppData\Local\Temp\Rtmp4ol6V1\rmarkdown-str464855176ff.html" --lua-filter "E:/My Documents/R/win-library/4.0/rmarkdown/rmd/lua/pagebreak.lua" --lua-filter "E:/My Documents/R/win-library/4.0/rmarkdown/rmd/lua/latex-div.lua"
+
+[Testing 1]
+"C:/PROGRA~1/Pandoc/pandoc" +RTS -K512m -RTS Rb3m_rmd_to_html.utf8.md --to html5 --from markdown+autolink_bare_uris+tex_math_single_backslash --output Rb3m_rmd_to_html.html --email-obfuscation none --self-contained --standalone --template "E:/My Documents/R/win-library/4.0/Rb3m/templates/toHTML/pandoc_template_default.html5.html" --highlight-style "E:/My Documents/R/win-library/4.0/Rb3m/templates/toHTML/pandoc_highlight_haddock.theme" --css "E:/My Documents/R/win-library/4.0/Rb3m/includes/toHTML/style.css" --css "E:/My Documents/R/win-library/4.0/Rb3m/includes/toHTML/style_navbar.css" --css "E:/My Documents/R/win-library/4.0/Rb3m/includes/toHTML/style_highlight.css" --css "E:/My Documents/R/win-library/4.0/Rb3m/includes/toHTML/style_code_btn.css" --include-in-header "E:/My Documents/R/win-library/4.0/Rb3m/includes/toHTML/header.html" --include-in-header "E:/My Documents/R/win-library/4.0/Rb3m/includes/toHTML/header_navbar.js.html" --include-in-header "E:/My Documents/R/win-library/4.0/Rb3m/includes/toHTML/header_codefolding.js.html" --include-in-header "E:/My Documents/R/win-library/4.0/Rb3m/includes/toHTML/header_sourceembed.js.html" --include-before-body "E:/My Documents/R/win-library/4.0/Rb3m/includes/toHTML/body_prefix.html" --include-before-body "E:/My Documents/R/win-library/4.0/Rb3m/includes/toHTML/body_prefix_navbar.html" --include-after-body "E:/My Documents/R/win-library/4.0/Rb3m/includes/toHTML/body_suffix.html" --variable code_menu --include-in-header "C:\Users\babym\AppData\Local\Temp\Rtmpmyg3LK\rmarkdown-str500c42727dd7.html" --lua-filter "E:/My Documents/R/win-library/4.0/rmarkdown/rmd/lua/pagebreak.lua" --lua-filter "E:/My Documents/R/win-library/4.0/rmarkdown/rmd/lua/latex-div.lua"
+
+[Rb3m::rmd_to_html]
+"C:/PROGRA~1/Pandoc/pandoc" +RTS -K512m -RTS Rb3m_toHTML.utf8.md --to html5 --from markdown+autolink_bare_uris+tex_math_single_backslash --output Rb3m_toHTML.html --email-obfuscation none --self-contained --variable code_menu --standalone --include-in-header "C:\Users\babym\AppData\Local\Temp\Rtmp6XuavI\rmarkdown-str32b81d3e34e3.html" --lua-filter "E:/My Documents/R/win-library/4.0/rmarkdown/rmd/lua/pagebreak.lua" --lua-filter "E:/My Documents/R/win-library/4.0/rmarkdown/rmd/lua/latex-div.lua"
+
+[ddRMarkdown::html_document]
+"C:/PROGRA~1/Pandoc/pandoc" +RTS -K512m -RTS test_b3m_template.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash+smart --output test_b3m_template.html --email-obfuscation none --self-contained --variable code_menu --standalone --section-divs --template "_template\pandoc_template_default.html" --highlight-style _template/pandoc_highlight_haddock.theme --css "_includes\style.css" --css "_includes\style_navbar.css" --css "_includes\style_highlight.css" --css "_includes\style_code_btn.css" --include-in-header "C:\Users\babym\AppData\Local\Temp\RtmpEP6MHW\rmarkdown-str5894307931e1.html" --lua-filter "E:/My Documents/R/win-library/4.0/rmarkdown/rmd/lua/pagebreak.lua" --lua-filter "E:/My Documents/R/win-library/4.0/rmarkdown/rmd/lua/latex-div.lua" --include-in-header "_includes\header.html" --include-in-header "_includes\header_navbar.js.html" --include-in-header "_includes\header_codefolding.js.html" --include-in-header "_includes\header_sourceembed.js.html" --include-before-body "_includes\body_prefix.html" --include-before-body "_includes\body_prefix_navbar.html"
+
+[Default::html_document]
+"C:/PROGRA~1/Pandoc/pandoc" +RTS -K512m -RTS None.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash+smart --output None.html --email-obfuscation none --self-contained --standalone --section-spans --template "E:\My Documents\R\win-library\4.0\rmarkdown\rmd\h\default.html" --no-highlight --variable highlightjs=1 --variable "theme:bootstrap" --include-in-header "C:\Users\babym\AppData\Local\Temp\RtmpcNtLQ1\rmarkdown-str631845e553f5.html" --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --lua-filter "E:/My Documents/R/win-library/4.0/rmarkdown/rmd/lua/pagebreak.lua" --lua-filter "E:/My Documents/R/win-library/4.0/rmarkdown/rmd/lua/latex-span.lua"
+
+[distill::distill_article]
+"C:/PROGRA~1/Pandoc/pandoc" +RTS -K512m -RTS distill_article.utf8.md --to html5 --from markdown+autolink_bare_uris+tex_math_single_backslash --output distill_article.html --email-obfuscation none --self-contained --standalone --no-highlight --template "E:\My Documents\R\win-library\4.0\distill\rmarkdown\templates\distill_article\resources\default.html" --lua-filter "E:\My Documents\R\win-library\4.0\distill\rmarkdown\templates\distill_article\resources\distill.lua" "--metadata=link-citations:true" --include-in-header "C:\Users\babym\AppData\Local\Temp\RtmpoJrJuM\file1d3434e21e79html" --include-in-header "C:\Users\babym\AppData\Local\Temp\RtmpoJrJuM\file1d3421b4c7dhtml" --include-in-header "C:\Users\babym\AppData\Local\Temp\RtmpoJrJuM\file1d3468aa45adhtml" --include-in-header "C:\Users\babym\AppData\Local\Temp\RtmpoJrJuM\file1d341da84b47html" --include-in-header "C:\Users\babym\AppData\Local\Temp\RtmpoJrJuM\file1d342bbd610chtml" --include-before-body "C:\Users\babym\AppData\Local\Temp\RtmpoJrJuM\file1d344f577fc2html" --include-before-body "C:\Users\babym\AppData\Local\Temp\RtmpoJrJuM\file1d3419f55dbhtml" --include-before-body "C:\Users\babym\AppData\Local\Temp\RtmpoJrJuM\file1d3447d065html" --include-after-body "C:\Users\babym\AppData\Local\Temp\RtmpoJrJuM\file1d342bd3188chtml" --include-after-body "C:\Users\babym\AppData\Local\Temp\RtmpoJrJuM\file1d342c473239html" --include-after-body "C:\Users\babym\AppData\Local\Temp\RtmpoJrJuM\file1d345dda6c8dhtml" --include-in-header "C:\Users\babym\AppData\Local\Temp\RtmpoJrJuM\rmarkdown-str1d3477ec7b48.html" --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --lua-filter "E:/My Documents/R/win-library/4.0/rmarkdown/rmd/lua/pagebreak.lua" --lua-filter "E:/My Documents/R/win-library/4.0/rmarkdown/rmd/lua/latex-textarea.lua" --include-in-header "C:\Users\babym\AppData\Local\Temp\RtmpoJrJuM\file1d34744e4862html"
+
+[pagedown::html_paged]
+"C:/PROGRA~1/Pandoc/pandoc" +RTS -K512m -RTS pagedown_html_paged.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash+smart --output pagedown_html_paged.html --email-obfuscation none --wrap preserve --lua-filter "E:/My Documents/R/win-library/4.0/pagedown/resources/lua/uri-to-fn.lua" --lua-filter "E:/My Documents/R/win-library/4.0/pagedown/resources/lua/loft.lua" --lua-filter "E:/My Documents/R/win-library/4.0/pagedown/resources/lua/footnotes.lua" --metadata newpage_html_class="page-break-after" --standalone --section-divs --table-of-contents --toc-depth 3 --template "E:\My Documents\R\win-library\4.0\pagedown\resources\html\paged.html" --highlight-style pygments --number-sections --include-in-header "C:\Users\babym\AppData\Local\Temp\RtmpCeysZ2\rmarkdown-str5f9430b86423.html" "--mathjax=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --lua-filter "E:/My Documents/R/win-library/4.0/rmarkdown/rmd/lua/pagebreak.lua" --lua-filter "E:/My Documents/R/win-library/4.0/rmarkdown/rmd/lua/latex-div.lua"
+
+[prettydoc::html_pretty]
+"C:/PROGRA~1/Pandoc/pandoc" +RTS -K512m -RTS prettydoc_html_pretty.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash+smart --output prettydoc_html_pretty.html --email-obfuscation none --self-contained --standalone --section-divs --template "E:/My Documents/R/win-library/4.0/prettydoc/resources/templates/architect.html" --highlight-style pygments --include-in-header "C:\Users\babym\AppData\Local\Temp\RtmpeGEPSt\rmarkdown-str42147e9c15e.html" --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --lua-filter "E:/My Documents/R/win-library/4.0/rmarkdown/rmd/lua/pagebreak.lua" --lua-filter "E:/My Documents/R/win-library/4.0/rmarkdown/rmd/lua/latex-div.lua" --css prettydoc_html_pretty_files/style.css
+
+[revealjs::revealjs_presentation]
+"C:/PROGRA~1/Pandoc/pandoc" +RTS -K512m -RTS revealjs_revealjs_presentation.utf8.md --to revealjs --from markdown+autolink_bare_uris+tex_math_single_backslash-implicit_figures --output revealjs_revealjs_presentation.html --email-obfuscation none --self-contained --template "E:\My Documents\R\win-library\4.0\revealjs\rmarkdown\templates\revealjs_presentation\resources\default.html" --variable center=false --slide-level 2 --variable theme=simple --variable transition=default --variable backgroundTransition=default --variable history=true --include-in-header "C:\Users\babym\AppData\Local\Temp\RtmpqI7Djq\rmarkdown-str1f203ad17929.html" --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --lua-filter "E:/My Documents/R/win-library/4.0/rmarkdown/rmd/lua/pagebreak.lua" --lua-filter "E:/My Documents/R/win-library/4.0/rmarkdown/rmd/lua/latex-div.lua" --variable revealjs-url=revealjs_revealjs_presentation_files/reveal.js-3.3.0.1 --highlight-style pygments
+
+[rmarkdown::html_vignette]
+"C:/PROGRA~1/Pandoc/pandoc" +RTS -K512m -RTS rmarkdown_html_vignette.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash+smart --output rmarkdown_html_vignette.html --email-obfuscation none --self-contained --standalone --section-divs --template "E:\My Documents\R\win-library\4.0\rmarkdown\rmd\h\default.html" --highlight-style pygments --css "E:\My Documents\R\win-library\4.0\rmarkdown\rmarkdown\templates\html_vignette\resources\vignette.css" --include-in-header "C:\Users\babym\AppData\Local\Temp\RtmpQBwMUx\rmarkdown-str371c449270c.html" --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --lua-filter "E:/My Documents/R/win-library/4.0/rmarkdown/rmd/lua/pagebreak.lua" --lua-filter "E:/My Documents/R/win-library/4.0/rmarkdown/rmd/lua/latex-div.lua"
+    </pre>
+  </body>
+</html>
