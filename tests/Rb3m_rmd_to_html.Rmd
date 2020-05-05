@@ -7,4 +7,9 @@ output: Rb3m::rmd_to_html
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+message('star...')
+```
+```{r echo=FALSE}
+message('star... embed_file_a')
+Rb3m::embed_file_a('Rb3m_rmd_to_html.Rmd')
 ```
