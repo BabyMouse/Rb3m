@@ -110,43 +110,7 @@ rmd_to_html <- function(toc = FALSE,
   keep_md <- TRUE
   theme <- NULL
   mathjax <- NULL
-  pre_knit <- function(input, ...) {
-    message("pre_knit:")
-    message(" - input: ", input)
-  }
-  post_knit <- function(metadata, input_file, runtime, encoding, ...) {
-    message("post_knit:")
-    message(" - metadata: ", metadata)
-    message(" - input_file: ", input_file)
-    message(" - runtime: ", runtime)
-    message(" - encoding: ", encoding)
-  }
-  pre_processor <- function(metadata, input_file, runtime, knit_meta, files_dir, output_dir) {
-    message("pre_processor:")
-    message(" - metadata: ", metadata)
-    message(" - input_file: ", input_file)
-    message(" - runtime: ", runtime)
-    message(" - knit_meta: ", knit_meta)
-    message(" - files_dir: ", files_dir)
-    message(" - output_dir: ", output_dir)
-  }
-  intermediates_generator <- function(original_input, intermediates_dir) {
-    message("intermediates_generator:")
-    message(" - original_input: ", original_input)
-    message(" - intermediates_dir: ", intermediates_dir)
-  }
-  post_processor <- function(metadata, input_file, output_file, clean, verbose) {
-    message("post_processor:")
-    message(" - metadata: ", metadata)
-    message(" - input_file: ", input_file)
-    message(" - output_file: ", output_file)
-    message(" - clean: ", clean)
-    message(" - verbose: ", verbose)
-    structure(output_file, post_process_original = TRUE)
-  }
-  on_exit <- function() {
-    message("on_exit:")
-  }
+
   rmarkdown::output_format(
     knitr = rmarkdown::knitr_options_html(
       fig_width = fig_width,
@@ -182,12 +146,12 @@ rmd_to_html <- function(toc = FALSE,
     keep_md = keep_md,
     clean_supporting = self_contained,
     df_print = df_print,
-    pre_knit = pre_knit,
-    post_knit = post_knit,
-    pre_processor = pre_processor,
-    intermediates_generator = intermediates_generator,
-    post_processor = post_processor,#post_processor(function() encoding),
-    on_exit = on_exit,
+    pre_knit = pre_knit_event_handler(),
+    post_knit = post_knit_event_handler(),
+    pre_processor = pre_processor_event_handler(),
+    intermediates_generator = intermediates_generator_event_handler(),
+    post_processor = post_processor_event_handler(),
+    on_exit = on_exit_event_handler(),
     base_format = rmarkdown::html_document_base(
       # smart = TRUE,
       theme = theme,
@@ -196,12 +160,4 @@ rmd_to_html <- function(toc = FALSE,
       ...
     )
   )
-}
-
-get_pathfile_from_res <- function(res_folder, res_file) {
-  file.path(system.file(res_folder, package = "Rb3m"), res_file)
-}
-
-build_parg_from_res <- function(res_name, res_folder, res_file) {
-  c(res_name, file.path(system.file(res_folder, package = "Rb3m"), res_file))
 }
