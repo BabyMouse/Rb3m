@@ -142,6 +142,7 @@ code span.an {
 
 /* Attribute */
 code span.at {
+  color: #008080;
 }
 
 /* BuiltIn */
@@ -155,7 +156,7 @@ code span.cf {
 
 /* Char */
 code span.ch {
-  color: #008080;
+  color: #0000ff;
 }
 
 /* Constant */
@@ -201,8 +202,14 @@ code span.kw {
   color: #0000ff;
 }
 
+/* Function */
+code span.fu {
+  color: #000000;
+}
+
 /* Operator */
 code span.op {
+  color: #ff0000;
 }
 
 /* Other */
