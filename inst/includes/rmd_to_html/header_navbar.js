@@ -1,0 +1,12 @@
+/**
+ ** Change font-size for Navigate bar.
+ ** Link: https://www.evernote.com/l/Am6CL7GomhJL06oE7nXTBJmH5gZA93ZoET8/
+ ** Source: https://baoangiang.com.vn/static/templates/version1/homepage/js/common.js?id=1.002e
+ */
+function contentFckFontSize(isUp) {
+  let divMainContainer = document.querySelector('div.container-fluid.main-container').style;
+  let fontSize = divMainContainer.fontSize == '' ? 100 : parseInt(divMainContainer.fontSize);
+  if (isUp) fontSize += 20;
+  else fontSize -= 20;
+  divMainContainer.fontSize = fontSize + '%';
+}
