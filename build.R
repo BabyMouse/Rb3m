@@ -1,5 +1,7 @@
 # Uninstall Rb3m package if exist
-if (length(find.package("Rb3m", quiet = TRUE)) != 0) devtools::uninstall(pkg = ".")
+if (length(find.package("Rb3m", quiet = TRUE)) != 0) {
+  devtools::uninstall(pkg = ".")
+}
 
 devtools::load_all()
 devtools::document()
@@ -11,8 +13,8 @@ devtools::install(pkg = ".", quick = TRUE)
 # Restart R session
 #' @seealso: https://stackoverflow.com/questions/15666810/restart-r-within-rstudio
 # .rs.api.restartSession()
-
+#
 #' @seealso: https://www.rdocumentation.org/packages/startup/versions/0.14.0/topics/restart
-rstudioapi::restartSession()
+# rstudioapi::restartSession()
 
-message(format(Sys.time(), "%Y-%m-%d"))
+message(format(Sys.time(), format = "%Y-%m-%d %H:%M:%S"))

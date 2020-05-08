@@ -178,6 +178,7 @@
       "**/.svn": true,
       "**/.hg": true,
       "**/.DS_Store": true,
+      "NAMESPACE": true,
       ".RData": true,
       ".Rproj.user": true,
       ".Rhistory": true,

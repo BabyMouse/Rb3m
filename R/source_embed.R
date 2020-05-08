@@ -1,6 +1,14 @@
-#' Embed a file
+#' Embed a file to HTML throght a tag
 #'
+#' @param file
+#' @param name
+#' @param text
+#' @param ...
+#'
+#' @return
 #' @export
+#'
+#' @examples
 embed_file_a <- function(file,
                          name = basename(file),
                          text = paste("Download", name),

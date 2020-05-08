@@ -79,46 +79,80 @@
 #' add_numbers(4, 5)
 #' }
 #'
-rmd_to_html <- function(toc = FALSE,
-                        toc_depth = 3,
-                        toc_float = FALSE,
-                        number_sections = FALSE,
-                        section_divs = TRUE,
-                        fig_width = 7,
-                        fig_height = 5,
-                        fig_retina = 2,
-                        fig_caption = TRUE,
+rmd_to_html <- function(
+                        # toc = FALSE,
+                        # toc_depth = 3,
+                        # toc_float = FALSE,
+                        # number_sections = FALSE,
+                        # section_divs = TRUE,
+                        # fig_width = 7,
+                        # fig_height = 5,
+                        # fig_retina = 2,
+                        # fig_caption = TRUE,
                         dev = "png",
                         df_print = "default",
                         # code_folding = c("none", "show", "hide"),
                         # code_download = FALSE,
                         smart = TRUE,
                         self_contained = TRUE,
-                        theme = "default",
-                        highlight = "default",
-                        mathjax = "default",
-                        template = "default",
-                        extra_dependencies = NULL,
-                        css = NULL,
-                        includes = NULL,
+                        # theme = "default",
+                        # highlight = "default",
+                        # mathjax = "default",
+                        # template = "default",
+                        # extra_dependencies = NULL,
+                        # css = NULL,
+                        # includes = NULL,
                         keep_md = FALSE,
-                        lib_dir = NULL,
-                        md_extensions = NULL,
-                        pandoc_args = NULL,
+                        # lib_dir = NULL,
+                        # md_extensions = NULL,
+                        # pandoc_args = NULL,
                         ...) {
+  ops <- list(...)
+  message("rmd_to_html:")
+  print_list("  - ", list(`...` = ops))
   df_print <- "kable"
   keep_md <- TRUE
   theme <- NULL
   mathjax <- NULL
+  fig_width <- 7
+  fig_height <- 5
+  fig_retina <- 2
+  fig_caption <- TRUE
+  md_extensions <- NULL
+
+  k_options <- rmarkdown::knitr_options_html(
+    fig_width = fig_width,
+    fig_height = fig_height,
+    fig_retina = fig_retina,
+    keep_md = keep_md,
+    dev = dev
+  )
+
+  template <- build_parg_from_res("--template", "templates/rmd_to_html", "pandoc_template_default.html5.html")
+  highlight <- build_parg_from_res("--highlight-style", "templates/rmd_to_html", "pandoc_highlight_haddock.theme")
+  pandoc_variable <- c("--variable", "code_menu")
+
+  css_files <- c(
+    get_pathfile_from_res("includes/rmd_to_html", "style.css"),
+    get_pathfile_from_res("includes/rmd_to_html", "style_navbar.css"),
+    get_pathfile_from_res("includes/rmd_to_html", "style_highlight.css"),
+    get_pathfile_from_res("includes/rmd_to_html", "style_code_btn.css")
+  )
+
+  js_files <- c(
+    get_pathfile_from_res("includes/rmd_to_html", "header_navbar.js"),
+    get_pathfile_from_res("includes/rmd_to_html", "header_codefolding.js"),
+    get_pathfile_from_res("includes/rmd_to_html", "header_sourceembed.js")
+  )
+
+  p_options <- c(
+    template, highlight, pandoc_variable,
+    merge_css_files_to_p_options(css_files),
+    merge_js_files_to_p_options(js_files)
+  )
 
   rmarkdown::output_format(
-    knitr = rmarkdown::knitr_options_html(
-      fig_width = fig_width,
-      fig_height = fig_height,
-      fig_retina = fig_retina,
-      keep_md = keep_md,
-      dev = dev
-    ),
+    knitr = k_options,
     pandoc = rmarkdown::pandoc_options(
       to = "html5",
       from = rmarkdown::from_rmarkdown(
@@ -127,20 +161,14 @@ rmd_to_html <- function(toc = FALSE,
       ),
       args = c(
         "--standalone",
-        build_parg_from_res("--template", "templates/toHTML", "pandoc_template_default.html5.html"),
-        build_parg_from_res("--highlight-style", "templates/toHTML", "pandoc_highlight_haddock.theme"),
-        build_parg_from_res("--css", "includes/toHTML", "style.css"),
-        build_parg_from_res("--css", "includes/toHTML", "style_navbar.css"),
-        build_parg_from_res("--css", "includes/toHTML", "style_highlight.css"),
-        build_parg_from_res("--css", "includes/toHTML", "style_code_btn.css"),
-        build_parg_from_res("--include-in-header", "includes/toHTML", "header.html"),
-        build_parg_from_res("--include-in-header", "includes/toHTML", "header_navbar.js.html"),
-        build_parg_from_res("--include-in-header", "includes/toHTML", "header_codefolding.js.html"),
-        build_parg_from_res("--include-in-header", "includes/toHTML", "header_sourceembed.js.html"),
-        build_parg_from_res("--include-before-body", "includes/toHTML", "body_prefix.html"),
-        build_parg_from_res("--include-before-body", "includes/toHTML", "body_prefix_navbar.html"),
-        build_parg_from_res("--include-after-body", "includes/toHTML", "body_suffix.html"),
-        "--variable", "code_menu"
+        p_options,
+        build_parg_from_res("--include-in-header", "includes/rmd_to_html", "header.html"),
+        # build_parg_from_res("--include-in-header", "includes/rmd_to_html", ""),
+        # build_parg_from_res("--include-in-header", "includes/rmd_to_html", ""),
+        # build_parg_from_res("--include-in-header", "includes/rmd_to_html", ""),
+        build_parg_from_res("--include-before-body", "includes/rmd_to_html", "body_prefix.html"),
+        build_parg_from_res("--include-before-body", "includes/rmd_to_html", "body_prefix_navbar.html"),
+        build_parg_from_res("--include-after-body", "includes/rmd_to_html", "body_suffix.html")
       )
     ),
     keep_md = keep_md,
