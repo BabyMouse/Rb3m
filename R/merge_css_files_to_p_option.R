@@ -1,4 +1,4 @@
-merge_css_files_to_p_options <- function(css_files) {
+merge_css_files_to_p_option <- function(css_files) {
   len <- length(css_files)
   if (len > 0) {
     css_tempfile <- tempfile(fileext = ".css")
