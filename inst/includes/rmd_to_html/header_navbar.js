@@ -5,7 +5,7 @@
  */
 function contentFckFontSize(isUp) {
   let divMainContainer = document.querySelector('div.container-fluid.main-container').style;
-  let fontSize = divMainContainer.fontSize == '' ? 100 : parseInt(divMainContainer.fontSize);
+  let fontSize = divMainContainer.fontSize == '' ? 100 : parseInt(divMainContainer.fontSize, 10);
   if (isUp) fontSize += 20;
   else fontSize -= 20;
   divMainContainer.fontSize = fontSize + '%';

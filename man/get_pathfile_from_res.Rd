@@ -6,9 +6,6 @@
 \usage{
 get_pathfile_from_res(res_folder, res_file)
 }
-\arguments{
-\item{res_file}{}
-}
 \value{
 String type.
 }

@@ -6,9 +6,6 @@
 \usage{
 build_parg_from_res(res_name, res_folder, res_file)
 }
-\arguments{
-\item{res_file}{}
-}
 \value{
 String type.
 }

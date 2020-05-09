@@ -16,8 +16,8 @@ module.exports = {
         //(A single - line array, for example, never gets trailing commas.)
         trailingComma: 'none',
         bracketSpacing: false,
-        singleQuote: true,
-      },
+        singleQuote: true
+      }
     },
     {
       files: ['*.css'],
@@ -25,8 +25,8 @@ module.exports = {
         printWidth: 180,
         tabWidth: 2,
         bracketSpacing: true,
-        singleQuote: true,
-      },
+        singleQuote: true
+      }
     },
     {
       files: ['*.js', 'javascript', '.prettierrc.js'],
@@ -35,10 +35,11 @@ module.exports = {
         printWidth: 180,
         tabWidth: 2,
         semi: true,
-        trailingComma: 'es5',
-        bracketSpacing: false,
+        trailingComma: 'none',
+        bracketSpacing: true,
         singleQuote: true,
-      },
+        endOfLine: 'crlf'
+      }
     },
     {
       files: ['*.json', 'jonc', '*.code-workspace', '.eslintrc', '.markdownlintrc'],
@@ -46,16 +47,16 @@ module.exports = {
         printWidth: 150,
         tabWidth: 2,
         trailingComma: 'none',
-        singleQuote: true,
-      },
+        singleQuote: true
+      }
     },
     {
       files: ['*.md'],
       options: {
-        proseWrap: 'never',
+        proseWrap: 'never'
         //htmlWhitespaceSensitivity: 'strict'
         //endOfLine: 'crlf'
-      },
-    },
-  ],
+      }
+    }
+  ]
 };

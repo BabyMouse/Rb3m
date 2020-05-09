@@ -2,7 +2,7 @@
 pre_knit_event_handler <- function() {
   function(input, ...) {
     message("pre_knit:")
-    print_list("  - ", list(input = input, `...` = list(...)))
+    print_list("  - ", list(input = input, ... = list(...)))
   }
 }
 post_knit_event_handler <- function() {
@@ -10,7 +10,7 @@ post_knit_event_handler <- function() {
     message("post_knit:")
     print_list("  - ", list(
       metadata = metadata,
-      input_file = input_file, runtime = runtime, `...` = list(...)
+      input_file = input_file, runtime = runtime, ... = list(...)
     ))
   }
 }

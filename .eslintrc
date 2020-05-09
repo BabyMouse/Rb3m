@@ -3,10 +3,11 @@
  * ref: https://eslint.org/docs/user-guide/configuring
  * ref: https://eslint.org/docs/rules/
  * ref: https://www.npmjs.com/package/eslint-config-prettier
- */
+
 {
   "plugins": ["prettier"],
   "rules": {
     "prettier/prettier": "error"
   }
 }
+ */

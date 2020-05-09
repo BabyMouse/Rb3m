@@ -107,9 +107,10 @@ rmd_to_html <- function(
                         # md_extensions = NULL,
                         # pandoc_args = NULL,
                         ...) {
-  ops <- list(...)
+  r_options <- list(...)
   message("rmd_to_html:")
-  print_list("  - ", list(`...` = ops))
+  print_list("  - ", list(... = r_options))
+
   df_print <- "kable"
   keep_md <- TRUE
   theme <- NULL
@@ -141,14 +142,28 @@ rmd_to_html <- function(
 
   js_files <- c(
     get_pathfile_from_res("includes/rmd_to_html", "header_navbar.js"),
-    get_pathfile_from_res("includes/rmd_to_html", "header_codefolding.js"),
-    get_pathfile_from_res("includes/rmd_to_html", "header_sourceembed.js")
+    add_code_menu_to_js_tempfile(r_options[["code_folding"]],r_options[["code_download"]])
   )
-
+  in_header_files <- c(
+    get_pathfile_from_res("includes/rmd_to_html", "header.html")
+  )
+  before_body_files <- c(
+    get_pathfile_from_res("includes/rmd_to_html", "body_prefix.html"),
+    get_pathfile_from_res("includes/rmd_to_html", "body_prefix_navbar.html")
+  )
+  after_body_files <- c(
+    get_pathfile_from_res("includes/rmd_to_html", "body_suffix.html")
+  )
   p_options <- c(
+    "--standalone",
     template, highlight, pandoc_variable,
-    merge_css_files_to_p_options(css_files),
-    merge_js_files_to_p_options(js_files)
+    merge_css_files_to_p_option(css_files),
+    merge_html_fragments_to_p_option(
+      "--include-in-header",
+      c(in_header_files, merge_js_files_to_tempfile(js_files))
+    ),
+    merge_html_fragments_to_p_option("--include-before-body", before_body_files),
+    merge_html_fragments_to_p_option("--include-after-body", after_body_files)
   )
 
   rmarkdown::output_format(
@@ -159,17 +174,7 @@ rmd_to_html <- function(
         fig_caption,
         md_extensions
       ),
-      args = c(
-        "--standalone",
-        p_options,
-        build_parg_from_res("--include-in-header", "includes/rmd_to_html", "header.html"),
-        # build_parg_from_res("--include-in-header", "includes/rmd_to_html", ""),
-        # build_parg_from_res("--include-in-header", "includes/rmd_to_html", ""),
-        # build_parg_from_res("--include-in-header", "includes/rmd_to_html", ""),
-        build_parg_from_res("--include-before-body", "includes/rmd_to_html", "body_prefix.html"),
-        build_parg_from_res("--include-before-body", "includes/rmd_to_html", "body_prefix_navbar.html"),
-        build_parg_from_res("--include-after-body", "includes/rmd_to_html", "body_suffix.html")
-      )
+      args = p_options
     ),
     keep_md = keep_md,
     clean_supporting = self_contained,

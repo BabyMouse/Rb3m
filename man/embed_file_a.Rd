@@ -6,9 +6,6 @@
 \usage{
 embed_file_a(file, name = basename(file), text = paste("Download", name), ...)
 }
-\arguments{
-\item{...}{}
-}
 \value{
 
 }
