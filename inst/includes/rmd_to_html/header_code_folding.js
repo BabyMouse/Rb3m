@@ -154,15 +154,6 @@ let btnCode_Handler = function (elm, srcCodeID) {
     btnCode_Text.innerText = 'Hide';
   }
 };
-let btnMenuCode_Handler = function () {
-  let ulDropdown = document.querySelector('ul.dropdown-menu');
-  if (ulDropdown.getAttribute('hidden') == null) ulDropdown.setAttribute('hidden', '');
-  else ulDropdown.removeAttribute('hidden');
-};
-let window_Handler = function (elm) {
-  if (!elm.target.classList.contains('dropdown-toggle') && !elm.target.parentElement.classList.contains('dropdown-toggle'))
-    document.querySelector('ul.dropdown-menu').setAttribute('hidden', '');
-};
 let btnShowAllCode_Handler = function () {
   for (let elm of document.querySelectorAll('div.code-collapse')) elm.removeAttribute('hidden');
   for (let elm of document.querySelectorAll('button.code-box-btn span')) elm.innerText = 'Hide';
@@ -173,13 +164,6 @@ let btnHideAllCode_Handler = function () {
 };
 
 function initializeCodeFolding(show) {
-  /**
-   ** Handlers for show/ hide Code menu
-   */
-  document.querySelector('button.dropdown-toggle').addEventListener('click', btnMenuCode_Handler);
-  window.addEventListener('click', function (elm) {
-    window_Handler(elm);
-  });
   /**
    ** Handlers for show-all and hide all Source code
    */
