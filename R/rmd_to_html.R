@@ -109,7 +109,25 @@ rmd_to_html <- function(
                         ...) {
   r_options <- list(...)
   message("rmd_to_html:")
-  print_list("  - ", list(... = r_options))
+  print_list("  - ", list(
+    # knitr_opts_knit = knitr::opts_knit$get(),
+    code_folding = r_options[["code_folding"]],
+    code_download = r_options[["code_download"]],
+    ... = r_options
+  ))
+
+  # Standardized input information for `code_folding`
+  r_options$code_folding <- ifelse((is.null(r_options$code_folding)), "show", r_options$code_folding)
+  r_options$is_folding <- ifelse(r_options$code_folding == "off", FALSE, TRUE)
+
+  # Standardized input information for `code_download`
+  r_options$code_download <- ifelse(is.null(r_options$code_download), TRUE, as.logical(r_options$code_download))
+  r_options$download_file_name <- r_options$download_file_name
+  r_options$download_file_title <- r_options$download_file_title
+
+    r_options$navbar_tempfile <- build_navbar_template_to_tempfile(r_options)
+
+  print_list("- ", r_options)
 
   df_print <- "kable"
   keep_md <- TRUE
@@ -131,7 +149,7 @@ rmd_to_html <- function(
 
   template <- build_parg_from_res("--template", "templates/rmd_to_html", "pandoc_template_default.html5.html")
   highlight <- build_parg_from_res("--highlight-style", "templates/rmd_to_html", "pandoc_highlight_haddock.theme")
-  pandoc_variable <- c("--variable", "code_menu")
+  #pandoc_variable <- c("--variable", "code_menu")
 
   css_files <- c(
     get_pathfile_from_res("includes/rmd_to_html", "style.css"),
@@ -142,26 +160,27 @@ rmd_to_html <- function(
 
   js_files <- c(
     get_pathfile_from_res("includes/rmd_to_html", "header_navbar.js"),
-    add_code_menu_to_js_tempfile(r_options[["code_folding"]],r_options[["code_download"]])
+    add_code_menu_to_js_tempfile(r_options)
   )
   in_header_files <- c(
     get_pathfile_from_res("includes/rmd_to_html", "header.html")
   )
   before_body_files <- c(
-    get_pathfile_from_res("includes/rmd_to_html", "body_prefix.html"),
-    get_pathfile_from_res("includes/rmd_to_html", "body_prefix_navbar.html")
+    #r_options$navbar_tempfile,
+    get_pathfile_from_res("includes/rmd_to_html", "body_prefix.html")
   )
   after_body_files <- c(
     get_pathfile_from_res("includes/rmd_to_html", "body_suffix.html")
   )
   p_options <- c(
     "--standalone",
-    template, highlight, pandoc_variable,
+    template, highlight, #pandoc_variable,
     merge_css_files_to_p_option(css_files),
     merge_html_fragments_to_p_option(
       "--include-in-header",
       c(in_header_files, merge_js_files_to_tempfile(js_files))
     ),
+    c("--include-before-body",r_options$navbar_tempfile),
     merge_html_fragments_to_p_option("--include-before-body", before_body_files),
     merge_html_fragments_to_p_option("--include-after-body", after_body_files)
   )
@@ -179,12 +198,12 @@ rmd_to_html <- function(
     keep_md = keep_md,
     clean_supporting = self_contained,
     df_print = df_print,
-    pre_knit = pre_knit_event_handler(),
-    post_knit = post_knit_event_handler(),
+    pre_knit = pre_knit_event_handler(r_options),
+    post_knit = post_knit_event_handler(r_options),
     pre_processor = pre_processor_event_handler(),
     intermediates_generator = intermediates_generator_event_handler(),
     post_processor = post_processor_event_handler(),
-    on_exit = on_exit_event_handler(),
+    on_exit = on_exit_event_handler(r_options),
     base_format = rmarkdown::html_document_base(
       # smart = TRUE,
       theme = theme,

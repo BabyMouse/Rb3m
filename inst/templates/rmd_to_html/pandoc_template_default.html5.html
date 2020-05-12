@@ -46,47 +46,6 @@ $if(kable-scroll)$
 </style>
 $endif$ $-- kable-scroll
 $for(css)$<link rel="stylesheet" href="$css$" $if(html5)$$else$type="text/css" $endif$ />$endfor$
-$if(code_menu)$
-  <script>
-    /**
-    ** Code menu
-    ** - Code Folding
-    ** - Source Embed
-    */
-    document.addEventListener('readystatechange', function() { if(document.readyState === "complete") initializeCodeFolding(true); });
-    document.addEventListener('readystatechange', function() { if(document.readyState === "complete") initializeSourceEmbed(); });
-  </script>
-$elseif(code_folding)$
-  <script>
-    /**
-    ** Code menu
-    ** - Code Folding
-    ** - Source Embed
-    */
-    document.addEventListener('readystatechange', function() { if (document.readyState === "complete") initializeCodeFolding("$code_folding$" === "show"); });
-  $if(source_embed)$
-    document.addEventListener('readystatechange', function() { if (document.readyState === "complete") initializeSourceEmbed(); });$endif$
-  </script>
-$elseif(source_embed)$
-  <script>
-    /**
-    ** Code menu
-    ** - Source Embed
-    */
-    document.addEventListener('readystatechange', function () {
-      if (document.readyState === "complete") {
-        /**
-        ** Handlers for show/ hide Code menu
-        */
-        document.querySelector("button.dropdown-toggle").addEventListener("click", btnMenuCode_Handler);
-        window.addEventListener("click", function (elm) {
-          window_Handler(elm);
-        });
-        // Handlers for SourceEmbed
-        initializeSourceEmbed();
-      }
-    });
-  </script>$endif$ $-- code_menu
 $if(kable-scroll)$  <script>
     /**
     ** Kable scroll
@@ -120,33 +79,6 @@ $if(mathjax-url)$  <script>
   <div class="container-fluid main-container">
 $for(include-before)$  $include-before$$endfor$
     <header id="header" class="fluid-row">
-$if(code_menu)$
-      <div class="btn-group pull-right">
-        <button type="button" class="btn-default btn-xs dropdown-toggle"><span>Code</span> <span class="caret"></span></button>
-        <ul class="dropdown-menu" hidden>
-          <li><a id="show-all-code" href="#">Show All Code</a></li>
-          <li><a id="hide-all-code" href="#">Hide All Code</a></li>
-          <li role="separator" class="divider"></li>
-          <li><a id="download-rmd-source" href="#">Download Rmd</a></li>
-        </ul>
-      </div>
-$elseif(code_folding)$
-      <div class="btn-group pull-right">
-        <button type="button" class="btn-default btn-xs dropdown-toggle"><span>Code</span> <span class="caret"></span></button>
-        <ul class="dropdown-menu" hidden>
-          <li><a id="show-all-code" href="#">Show All Code</a></li>
-          <li><a id="hide-all-code" href="#">Hide All Code</a></li>$if(source_embed)$
-          <li role="separator" class="divider"></li>
-          <li><a id="download-rmd-source" href="#">Download Rmd</a></li>$endif$ $-- source_embed
-        </ul>
-      </div>
-$elseif(source_embed)$
-      <div class="btn-group pull-right">
-        <button type="button" class="btn-default btn-xs dropdown-toggle"><span>Code</span> <span class="caret"></span></button>
-        <ul class="dropdown-menu" hidden>
-          <li><a id="download-rmd-source" href="#">Download Rmd</a></li>
-        </ul>
-      </div>$endif$ $-- code_menu
 $if(title)$
       <div class="title toc-ignore">$title$</div>$endif$ $-- title
 $if(subtitle)$

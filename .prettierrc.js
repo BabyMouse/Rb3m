@@ -16,7 +16,9 @@ module.exports = {
         //(A single - line array, for example, never gets trailing commas.)
         trailingComma: 'none',
         bracketSpacing: false,
-        singleQuote: true
+        singleQuote: true,
+        jsxBracketSameLine: true,
+        htmlWhitespaceSensitivity: 'strict'
       }
     },
     {

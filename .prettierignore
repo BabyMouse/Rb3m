@@ -1,1 +1,2 @@
-inst\templates\toHTML\pandoc_template_default.html5.html
+inst/templates/rmd_to_html/pandoc_template_default.html5.html
+#inst/includes/rmd_to_html/body_prefix_navbar.template.html

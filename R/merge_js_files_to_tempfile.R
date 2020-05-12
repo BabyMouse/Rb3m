@@ -16,22 +16,57 @@ merge_js_files_to_tempfile <- function(js_files) {
   }
 }
 
-add_code_menu_to_js_tempfile <- function(code_folding = "show", code_download = TRUE) {
-  # code_folding = { default = 'show' | NULL, 'hide', 'off' }
-  # code_folding <- r_options[["code_folding"]]
-  code_folding <- if (is.null(code_folding)) "show"
-  c_folding <- ifelse(code_folding == "off", FALSE, TRUE)
-
-  # code_download = { default = TRUE | NULL, 'off' }
-  # code_download <- r_options[["code_download"]]
-  c_download <- ifelse(is.null(code_download), TRUE, code_download != "off")
-
-  if (c_folding || c_download) {
-
-    c(
-      get_pathfile_from_res("includes/rmd_to_html", "header_codefolding.js"),
-      get_pathfile_from_res("includes/rmd_to_html", "header_sourceembed.js")
-    )
+#' add_code_menu_to_js_tempfile
+#'
+#' @param code_folding code_folding = { default = 'show' | NULL, 'hide', 'off' }
+#' @param code_download code_download = { default = TRUE | NULL, FALSE | 'off' }
+#'
+#' @return NULL or js_tempfile
+#' @export
+#'
+add_code_menu_to_js_tempfile <- function(r_options) {
+  js_tempfile <- tempfile(fileext = ".js")
+  js_code_content <- ""
+  js_code_menu <- paste(xfun::read_utf8(get_pathfile_from_res(
+    "includes/rmd_to_html",
+    "header_code_menu.template.js"
+  )), sep = "", collapse = "\n")
+  if (r_options$is_folding || r_options$code_download) {
+    if (r_options$is_folding) {
+      js_code_content <- c(
+        js_code_content,
+        xfun::read_utf8(get_pathfile_from_res("includes/rmd_to_html", "header_code_folding.js"))
+      )
+      js_code_menu <- gsub(
+        "[[:space:]]*/\\*Rb3m:code_folding([[:print:][:space:]]*)/Rb3m:code_folding\\*/[[:space:]]*",
+        "\\1", js_code_menu
+      )
+      js_code_menu <- gsub("\\$\\{code_folding\\}", r_options$code_folding, js_code_menu)
+    }
+    else {
+      js_code_menu <- gsub(
+        "[[:space:]]*/\\*Rb3m:code_folding[[:print:][:space:]]*/Rb3m:code_folding\\*/[[:blank:]]*",
+        "", js_code_menu
+      )
+    }
+    if (r_options$code_download) {
+      js_code_content <- c(
+        js_code_content,
+        xfun::read_utf8(get_pathfile_from_res("includes/rmd_to_html", "header_code_download.js"))
+      )
+      js_code_menu <- gsub(
+        "[[:space:]]*/\\*Rb3m:code_download([[:print:][:space:]]*)/Rb3m:code_download\\*/[[:space:]]*",
+        "\\1", js_code_menu
+      )
+    }
+    else {
+      js_code_menu <- gsub(
+        "[[:space:]]*/\\*Rb3m:code_download[[:print:][:space:]]*/Rb3m:code_download\\*/[[:blank:]]*",
+        "", js_code_menu
+      )
+    }
+    xfun::write_utf8(c(js_code_content, js_code_menu), js_tempfile)
+    return(js_tempfile)
   }
   else {
     return(NULL)

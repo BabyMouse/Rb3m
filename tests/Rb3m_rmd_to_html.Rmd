@@ -6,12 +6,13 @@ date: "Ngày tạo: 2020-05-05"
 date-meta: "Cập nhật: `r format(Sys.time(), '%Y-%m-%d')`"
 output:
   Rb3m::rmd_to_html:
-    code_download: yes
-    code_folding: show
+    code_folding: 'show'
+    code_download: on
 
 ---
 
 ```{r setup, include=FALSE}
+message("start...")
 knitr::opts_chunk$set(echo = TRUE)
 
 # ref: https://github.com/yihui/knitr/blob/master/R/engine.R
@@ -23,8 +24,8 @@ knitr::knit_engines$set(yml = function(options) {
 })
 ```
 ```{r echo=FALSE}
-message('star... embed_file_a')
-Rb3m::embed_file_a('Rb3m_rmd_to_html.Rmd')
+#message('star... embed_file_a')
+#Rb3m::embed_file_a('Rb3m_rmd_to_html.Rmd')
 ```
 
 Can config `output` with some options
