@@ -1,11 +1,5 @@
 #' @export
 pre_knit_event_handler <- function(r_options) {
-  r_options$download_file_name <- ifelse(is.null(r_options$download_file_name),
-    basename(r_options$pre_knit$source_input), r_options$download_file_name
-  )
-  r_options$download_file_title <- ifelse(is.null(r_options$download_file_title),
-    paste0("Download ", basename(r_options$pre_knit$source_input)), r_options$download_file_title
-  )
   html_content <- xfun::read_utf8(r_options$navbar_tempfile)
   html_content <- gsub("\\$\\{download_file_name\\}", r_options$download_file_name, html_content)
   html_content <- gsub(

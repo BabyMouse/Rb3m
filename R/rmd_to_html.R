@@ -203,7 +203,16 @@ rmd_to_html <- function(
   )
 
   pre_knit <- function(input, ...) {
+    r_options <<- c(r_options,
+      download_file_name = ifelse(is.null(r_options$download_file_name),
+        basename(input), r_options$download_file_name
+      ),
+      download_file_title = ifelse(is.null(r_options$download_file_title),
+        paste0("Download ", basename(input)), r_options$download_file_title
+      )
+    )
     r_options$pre_knit <<- list(source_input = input, ...)
+
     pre_knit_event_handler(r_options)
   }
   post_knit <- function(metadata, input_file, runtime, encoding, ...) {
