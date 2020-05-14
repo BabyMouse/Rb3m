@@ -1,70 +1,45 @@
 #' @export
 pre_knit_event_handler <- function(r_options) {
-  function(input, ...) {
-    r_options$download_file_name <- ifelse(is.null(r_options$download_file_name),
-      basename(input), r_options$download_file_name
-    )
-    r_options$download_file_title <- ifelse(is.null(r_options$download_file_title),
-      paste0("Download ", basename(input)), r_options$download_file_title
-    )
-    html_content <- xfun::read_utf8(r_options$navbar_tempfile)
-    html_content <- gsub("\\$\\{download_file_name\\}", r_options$download_file_name, html_content)
-    html_content <- gsub(
-      "\\$\\{download_file_data\\}",
-      paste0("data:", mime::guess_type(input), ";base64,", base64enc::base64encode(input)),
-      html_content
-    )
-    html_content <- gsub("\\$\\{download_file_title\\}", r_options$download_file_title, html_content)
+  r_options$download_file_name <- ifelse(is.null(r_options$download_file_name),
+    basename(r_options$pre_knit$source_input), r_options$download_file_name
+  )
+  r_options$download_file_title <- ifelse(is.null(r_options$download_file_title),
+    paste0("Download ", basename(r_options$pre_knit$source_input)), r_options$download_file_title
+  )
+  html_content <- xfun::read_utf8(r_options$navbar_tempfile)
+  html_content <- gsub("\\$\\{download_file_name\\}", r_options$download_file_name, html_content)
+  html_content <- gsub(
+    "\\$\\{download_file_data\\}",
+    paste0(
+      "data:", mime::guess_type(r_options$pre_knit$source_input), ";base64,",
+      base64enc::base64encode(r_options$pre_knit$source_input)
+    ),
+    html_content
+  )
+  html_content <- gsub("\\$\\{download_file_title\\}", r_options$download_file_title, html_content)
 
-    xfun::write_utf8(html_content, con = r_options$navbar_tempfile)
-    message("pre_knit:")
-    print_list("  - ", list(
-      input = input, ... = list(...),
-      r_options = r_options
-    ))
-  }
+  xfun::write_utf8(html_content, con = r_options$navbar_tempfile)
+  print_list(r_options, "  - ", "pre_knit:")
 }
 post_knit_event_handler <- function(r_options) {
-  function(metadata, input_file, runtime, encoding, ...) {
-    message("post_knit:")
-    print_list("  - ", list(
-      metadata = metadata,
-      input_file = input_file, runtime = runtime, ... = list(...),
-      r_options = r_options
-    ))
-  }
+  print_list(r_options, "  - ", "post_knit:")
 }
-pre_processor_event_handler <- function() {
-  function(metadata, input_file, runtime, knit_meta, files_dir, output_dir) {
-    message("pre_processor:")
-    print_list("  - ", list(
-      metadata = metadata,
-      input_file = input_file, runtime = runtime,
-      knit_meta = knit_meta,
-      files_dir = files_dir, output_dir = output_dir
-    ))
-  }
+pre_processor_event_handler <- function(r_options) {
+  print_list(r_options, "  - ", "pre_processor:")
 }
-intermediates_generator_event_handler <- function() {
-  function(original_input, intermediates_dir) {
-    message("intermediates_generator:")
-    print_list("  - ", list(original_input = original_input, intermediates_dir = intermediates_dir))
-  }
+intermediates_generator_event_handler <- function(r_options) {
+  print_list(r_options, "  - ", "intermediates_generator:")
 }
 post_processor_event_handler <- function() {
   function(metadata, input_file, output_file, clean, verbose) {
-    message("post_processor:")
-    print_list(" - ", list(
+    print_list(list(
       metadata = metadata,
       input_file = input_file, output_file = output_file,
       clean = clean, verbose = verbose
-    ))
+    ), " - ", "post_processor:")
     structure(output_file, post_process_original = TRUE)
   }
 }
 on_exit_event_handler <- function(r_options) {
-  function() {
-    message("on_exit:")
-    print_list("  - ", list(r_options = r_options))
-  }
+  print_list(r_options, "  - ", "on_exit:")
 }

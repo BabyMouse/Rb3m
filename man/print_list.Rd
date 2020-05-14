@@ -4,12 +4,14 @@
 \alias{print_list}
 \title{Print tree member of list type}
 \usage{
-print_list(indent_string = "", lst = NULL)
+print_list(lst = NULL, indent_string = NULL, list_title = NULL)
 }
 \arguments{
-\item{indent_string}{String type.}
+\item{lst}{List type. Default = NULL.}
 
-\item{lst}{List type.}
+\item{indent_string}{String type. Default = "".}
+
+\item{list_title}{String type. Default = "".}
 }
 \value{
 Nothing.

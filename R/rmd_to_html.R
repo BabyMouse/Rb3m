@@ -80,21 +80,30 @@
 #' }
 #'
 rmd_to_html <- function(
+                        # Rb3m options
+                        # code_folding = c("none", "show", "hide"),
+                        # code_download = FALSE,
+                        # download_file_name,
+                        # download_file_title,
+                        #
+                        # Knit options
+                        fig_width = 7,
+                        fig_height = 5,
+                        fig_retina = 2,
+                        keep_md = TRUE,
+                        dev = "png",
+                        #
+                        # RMarkdown options
+                        fig_caption = TRUE,
+                        md_extensions = NULL,
+                        self_contained = TRUE,
+                        df_print = "kable",
+                        #
+                        # Pandoc options
                         # toc = FALSE,
                         # toc_depth = 3,
                         # toc_float = FALSE,
                         # number_sections = FALSE,
-                        # section_divs = TRUE,
-                        # fig_width = 7,
-                        # fig_height = 5,
-                        # fig_retina = 2,
-                        # fig_caption = TRUE,
-                        dev = "png",
-                        df_print = "default",
-                        # code_folding = c("none", "show", "hide"),
-                        # code_download = FALSE,
-                        smart = TRUE,
-                        self_contained = TRUE,
                         # theme = "default",
                         # highlight = "default",
                         # mathjax = "default",
@@ -102,19 +111,41 @@ rmd_to_html <- function(
                         # extra_dependencies = NULL,
                         # css = NULL,
                         # includes = NULL,
-                        keep_md = FALSE,
                         # lib_dir = NULL,
-                        # md_extensions = NULL,
-                        # pandoc_args = NULL,
+                        # section_divs = TRUE,
+                        smart = TRUE,
+                        pandoc_variables = NULL,
                         ...) {
-  r_options <- list(...)
-  message("rmd_to_html:")
-  print_list("  - ", list(
-    # knitr_opts_knit = knitr::opts_knit$get(),
-    code_folding = r_options[["code_folding"]],
-    code_download = r_options[["code_download"]],
-    ... = r_options
-  ))
+  dots_options <- list(...)
+
+  # Knit options
+  k_options <- list(
+    fig_width = fig_width,
+    fig_height = fig_height,
+    fig_retina = fig_retina,
+    keep_md = keep_md,
+    dev = dev
+  )
+
+  # RMarkdown options
+  rmd_options <- list(
+    from = list(
+      fig_caption = fig_caption,
+      md_extensions = md_extensions
+    ),
+    clean_supporting = self_contained,
+    df_print = df_print,
+    theme = NULL,
+    mathjax = NULL
+  )
+
+  # Rb3m options
+  r_options <- list(
+    code_folding = dots_options[["code_folding"]],
+    code_download = dots_options[["code_download"]],
+    download_file_name = dots_options[["download_file_name"]],
+    download_file_title = dots_options[["download_file_title"]]
+  )
 
   # Standardized input information for `code_folding`
   r_options$code_folding <- ifelse((is.null(r_options$code_folding)), "show", r_options$code_folding)
@@ -125,31 +156,14 @@ rmd_to_html <- function(
   r_options$download_file_name <- r_options$download_file_name
   r_options$download_file_title <- r_options$download_file_title
 
-    r_options$navbar_tempfile <- build_navbar_template_to_tempfile(r_options)
+  r_options$navbar_tempfile <- build_navbar_template_to_tempfile(r_options)
 
-  print_list("- ", r_options)
+  print_list(r_options, "  - ", "Rb3m options:")
 
-  df_print <- "kable"
-  keep_md <- TRUE
-  theme <- NULL
-  mathjax <- NULL
-  fig_width <- 7
-  fig_height <- 5
-  fig_retina <- 2
-  fig_caption <- TRUE
-  md_extensions <- NULL
-
-  k_options <- rmarkdown::knitr_options_html(
-    fig_width = fig_width,
-    fig_height = fig_height,
-    fig_retina = fig_retina,
-    keep_md = keep_md,
-    dev = dev
-  )
 
   template <- build_parg_from_res("--template", "templates/rmd_to_html", "pandoc_template_default.html5.html")
   highlight <- build_parg_from_res("--highlight-style", "templates/rmd_to_html", "pandoc_highlight_haddock.theme")
-  #pandoc_variable <- c("--variable", "code_menu")
+  # pandoc_variable <- c("--variable", "code_menu")
 
   css_files <- c(
     get_pathfile_from_res("includes/rmd_to_html", "style.css"),
@@ -166,50 +180,89 @@ rmd_to_html <- function(
     get_pathfile_from_res("includes/rmd_to_html", "header.html")
   )
   before_body_files <- c(
-    #r_options$navbar_tempfile,
+    # r_options$navbar_tempfile,
     get_pathfile_from_res("includes/rmd_to_html", "body_prefix.html")
   )
   after_body_files <- c(
     get_pathfile_from_res("includes/rmd_to_html", "body_suffix.html")
   )
+
+  # Pandoc options
   p_options <- c(
     "--standalone",
-    template, highlight, #pandoc_variable,
+    template, highlight,
+    pandoc_variables,
     merge_css_files_to_p_option(css_files),
     merge_html_fragments_to_p_option(
       "--include-in-header",
       c(in_header_files, merge_js_files_to_tempfile(js_files))
     ),
-    c("--include-before-body",r_options$navbar_tempfile),
+    c("--include-before-body", r_options$navbar_tempfile),
     merge_html_fragments_to_p_option("--include-before-body", before_body_files),
     merge_html_fragments_to_p_option("--include-after-body", after_body_files)
   )
 
+  pre_knit <- function(input, ...) {
+    r_options$pre_knit <<- list(source_input = input, ...)
+    pre_knit_event_handler(r_options)
+  }
+  post_knit <- function(metadata, input_file, runtime, encoding, ...) {
+    r_options$post_knit <<- list(
+      metadata = metadata, input_file = input_file,
+      runtime = runtime, encoding = encoding,
+      ...
+    )
+    post_knit_event_handler(r_options)
+  }
+  pre_processor <- function(metadata, input_file, runtime, knit_meta, files_dir, output_dir) {
+    r_options$pre_processor <<- list(
+      metadata = metadata, input_file = input_file, runtime = runtime,
+      knit_meta = knit_meta, files_dir = files_dir, output_dir = output_dir
+    )
+    pre_processor_event_handler(r_options)
+  }
+  intermediates_generator <- function(original_input, intermediates_dir) {
+    r_options$intermediates_generator <<- list(
+      original_input = original_input,
+      intermediates_dir = intermediates_dir
+    )
+    intermediates_generator_event_handler(r_options)
+  }
+  on_exit <- function() {
+    on_exit_event_handler(r_options)
+  }
+
   rmarkdown::output_format(
-    knitr = k_options,
+    knitr = rmarkdown::knitr_options_html(
+      fig_width = k_options$fig_width,
+      fig_height = k_options$fig_height,
+      fig_retina = k_options$fig_retina,
+      keep_md = k_options$keep_md,
+      dev = k_options$dev
+    ),
     pandoc = rmarkdown::pandoc_options(
       to = "html5",
       from = rmarkdown::from_rmarkdown(
-        fig_caption,
-        md_extensions
+        implicit_figures = rmd_options$from$fig_caption,
+        extensions = rmd_options$from$md_extensions
       ),
       args = p_options
     ),
     keep_md = keep_md,
-    clean_supporting = self_contained,
-    df_print = df_print,
-    pre_knit = pre_knit_event_handler(r_options),
-    post_knit = post_knit_event_handler(r_options),
-    pre_processor = pre_processor_event_handler(),
-    intermediates_generator = intermediates_generator_event_handler(),
+    clean_supporting = rmd_options$clean_supporting,
+    df_print = rmd_options$df_print,
+    pre_knit = pre_knit,
+    post_knit = post_knit,
+    pre_processor = pre_processor,
+    intermediates_generator = intermediates_generator,
     post_processor = post_processor_event_handler(),
-    on_exit = on_exit_event_handler(r_options),
+    on_exit = on_exit,
     base_format = rmarkdown::html_document_base(
       # smart = TRUE,
-      theme = theme,
-      mathjax = mathjax,
-      pandoc_args = NULL,
-      ...
+      theme = rmd_options$theme,
+      mathjax = rmd_options$mathjax,
+      # pandoc_args = NULL,
+      # ...
     )
   )
 }
