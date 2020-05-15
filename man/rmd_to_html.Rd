@@ -13,6 +13,17 @@ rmd_to_html(df_print)
 rmd_to_html(df_print, keep_md)
 }
 \arguments{
+\item{template}{Pandoc template to use for rendering. Pass "default" to use
+the rmarkdown package default template; pass \code{NULL} to use pandoc's
+built-in template; pass a path to use a custom template that you've created.
+Note that if you don't use the "default" template then some features of
+\code{html_document} won't be available (see the Templates section below for
+more details).}
+
+\item{highlight}{Syntax highlighting style. Supported styles include
+"default", "tango", "pygments", "kate", "monochrome", "espresso", "zenburn",
+"haddock", and "textmate". Pass \code{NULL} to prevent syntax highlighting.}
+
 \item{fig_width}{Default width (in inches) for figures}
 
 \item{fig_height}{Default height (in inches) for figures}
