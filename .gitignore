@@ -49,3 +49,6 @@ node_modules
 #
 # Temporary config files
 .markdownlintrc
+#
+# Test file
+tests/*.css

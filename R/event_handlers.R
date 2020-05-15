@@ -70,7 +70,13 @@ post_knit_event_handler <- function(r_options) {
     }
   }
 
-  # Add CSS & JS to Head tag
+  # minify CSS & JavaScript
+  css_content <- paste0(css_content, collapse = "\n")
+  js_content <- paste0(js_content, collapse = "\n")
+
+  css_content <- gsub("[[:space:]]*\n[[:space:]]*", "", css_content)
+
+  # Add CSS & JavaScript to Head tag
   head_content <- c(
     head_content,
     '<style type="text/css">', css_content, "</style>",

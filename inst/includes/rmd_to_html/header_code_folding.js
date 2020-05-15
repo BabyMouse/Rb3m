@@ -174,7 +174,7 @@ function initializeCodeFolding(show) {
    */
   let sourceCodeIndex = 1;
 
-  // select all R code blocks
+  /* select all R code blocks */
   for (let codeBlock of document.querySelectorAll('div.sourceCode')) {
     let sourceCodeID = 'sourceCodeIndex-' + sourceCodeIndex;
     let classList = codeBlock.querySelector('pre').className.split(' ');
@@ -184,7 +184,7 @@ function initializeCodeFolding(show) {
       if (language != undefined) break;
     }
 
-    // create a codefoding bar div
+    /* create a codefoding bar div */
     let divCodeBar = document.createElement('div');
     divCodeBar.classList.add('code-box-bar');
     divCodeBar.insertAdjacentHTML(
@@ -208,7 +208,7 @@ function initializeCodeFolding(show) {
     divButtonGroup.append(btnCode);
     divCodeBar.append(divButtonGroup);
     codeBlock.append(divCodeBar);
-    // create a collapsable div to wrap the code in
+    /* create a collapsable div to wrap the code in */
     let divCollapse = document.createElement('div');
     divCollapse.setAttribute('id', sourceCodeID);
     divCollapse.classList.add('collapse', 'code-collapse');
