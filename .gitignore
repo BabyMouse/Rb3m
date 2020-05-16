@@ -52,3 +52,4 @@ node_modules
 #
 # Test file
 tests/*.css
+tests/*.js
