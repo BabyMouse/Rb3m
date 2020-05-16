@@ -7,7 +7,7 @@
  * Ref: https://pandoc.org/MANUAL.html#syntax-highlighting
  * Ref: https://github.com/KDE/syntax-highlighting/tree/master/data/syntax
  */
-var languages = new Map([
+let languages = new Map([
   ['abc', '"abc'],
   ['actionscript', 'ActionScript'],
   ['ada', 'ada'],

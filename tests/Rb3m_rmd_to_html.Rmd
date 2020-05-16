@@ -1,5 +1,5 @@
 ---
-title: "Tựa đề"
+title: "Tựa đề chính"
 subtitle: "Tựa đề phụ"
 author: "Trát Quang Thụy"
 date: "Ngày tạo: 2020-05-05"
