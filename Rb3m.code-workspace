@@ -160,6 +160,9 @@
     "[plaintext]": {
       "editor.fontFamily": "Consolas, 'Courier New', monospace"
     },
+    "[svg]": {
+      "editor.fontFamily": "Consolas, 'Courier New', monospace"
+    },
     "window.zoomLevel": 1,
     //"markdown.styles": [".vscode/style.css"],
     "editor.defaultFormatter": "esbenp.prettier-vscode",

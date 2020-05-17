@@ -169,6 +169,13 @@ rmd_to_html <- function(
 
   print_list(r_options, "  - ", "Rb3m options:")
 
+  knitr::knit_engines$set(html = function(options) {
+    knitr::engine_output(options, options$code, "")
+  })
+  knitr::knit_engines$set(yml = function(options) {
+    knitr::engine_output(options, options$code, "")
+  })
+
   pre_knit <- function(input, ...) {
     r_options <<- c(r_options,
       download_file_name = ifelse(is.null(r_options$download_file_name),

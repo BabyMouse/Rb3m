@@ -3,7 +3,7 @@ pre_knit_event_handler <- function(r_options) {
   print_list(r_options, "  - ", "pre_knit:")
 }
 post_knit_event_handler <- function(r_options) {
-  p_options <- c("--standalone")
+  p_options <- c("--standalone", "--section-divs")
   css_content <- character(0)
   js_content <- character(0)
   head_content <- character(0)
@@ -73,10 +73,6 @@ post_knit_event_handler <- function(r_options) {
   # minify CSS & JavaScript
   css_content <- minify_css(css_content)
   js_content <- minify_js(js_content)
-  # css_content <- paste0(css_content, collapse = "\n")
-  # js_content <- paste0(js_content, collapse = "\n")
-  #
-  # css_content <- gsub("[[:space:]]*\n[[:space:]]*", "", css_content)
 
   # Add CSS & JavaScript to Head tag
   head_content <- c(
@@ -129,10 +125,9 @@ on_exit_event_handler <- function(r_options) {
   )
   output_content <- read_to_string(output_file)
   output_content <- gsub(
-    pattern = "<script>[[:space:]]*// Pandoc 2.9 [[:print:][:space:]]*while \\(a.length > 0\\) h.removeAttribute\\(a\\[0\\].name\\);[[:space:]]*\\}[[:space:]]*\\}\\);[[:space:]]*</script>",
+    pattern = "[[:space:]]*<script>[[:space:]]*// Pandoc 2.9 [[:print:][:space:]]*while \\(a.length > 0\\) h.removeAttribute\\(a\\[0\\].name\\);[[:space:]]*\\}[[:space:]]*\\}\\);[[:space:]]*</script>[[:space:]]*",
     replacement = "", output_content
   )
-  output_content <- gsub("\n[[:space:]]*\n", "\n", output_content)
   xfun::write_utf8(output_content, output_file)
   print_list(r_options, "  - ", "on_exit:")
 }

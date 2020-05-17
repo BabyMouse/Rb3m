@@ -147,6 +147,7 @@ code span.at {
 
 /* BuiltIn */
 code span.bu {
+  color: #000000;
 }
 
 /* ControlFlow */
@@ -161,6 +162,7 @@ code span.ch {
 
 /* Constant */
 code span.cn {
+  color: #0000ff;
 }
 
 /* Comment */
@@ -186,10 +188,12 @@ code span.er {
 
 /* Extension */
 code span.ex {
+  color: #000000;
 }
 
 /* Import */
 code span.im {
+  color: #000000;
 }
 
 /* Information */
@@ -239,6 +243,7 @@ code span.st {
 
 /* Variable */
 code span.va {
+  color: #000000;
 }
 
 /* VerbatimString */

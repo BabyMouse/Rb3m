@@ -8,6 +8,17 @@ output:
   Rb3m::rmd_to_html:
     code_folding: 'show'
     code_download: on
+    navibar:
+      left:
+        home:
+          text: "Home"
+          icon: "home-solid.svg"
+          href: "https://rpubs.com/BabyMouse"
+      right:
+        github:
+          text: "GitHub"
+          icon: "github-brands.svg"
+          href: "https://github.com/BabyMouse/Rb3m"
 
 ---
 
@@ -16,19 +27,29 @@ message("start...")
 knitr::opts_chunk$set(echo = TRUE)
 
 # ref: https://github.com/yihui/knitr/blob/master/R/engine.R
-knitr::knit_engines$set(html = function(options) {
-  knitr::engine_output(options, options$code, '')
-})
-knitr::knit_engines$set(yml = function(options) {
-  knitr::engine_output(options, options$code, '')
-})
+# knitr::knit_engines$set(html = function(options) {
+#   knitr::engine_output(options, options$code, '')
+# })
+# knitr::knit_engines$set(yml = function(options) {
+#   knitr::engine_output(options, options$code, '')
+# })
 ```
 ```{r echo=FALSE}
 #message('star... embed_file_a')
 #Rb3m::embed_file_a('Rb3m_rmd_to_html.Rmd')
 ```
 
-Can config `output` with some options
+# Heading 1.1
+
+Heading 1.1 content.
+
+## Heading 2
+
+Heading 2 content.
+
+### Can config `output` with some options
+
+Heading 3.1 content.
 
 ```{yml eval=FALSE}
 output:
@@ -37,8 +58,22 @@ output:
     code_folding: show
 ```
 
-Type command promt in `Console` to see all options
+### Type command promt in `Console` to see all options
+
+Heading 3.2 content.
 
 ```{r eval=FALSE}
 ?Rb3m::rmd_to_html
 ```
+
+# Heading 1.2
+
+Heading 1.2 content.
+
+## Heading 2.1
+
+Heading 2.1 content.
+
+## Heading 2.2
+
+Heading 2.2 content.
