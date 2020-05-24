@@ -18,7 +18,7 @@ post_knit_event_handler <- function(r_options) {
     )
     css_content <- c(
       css_content,
-      read_to_string(get_pathfile_from_res("includes/rmd_to_html", "style.css"))
+      xfun::file_string(get_pathfile_from_res("includes/rmd_to_html", "style.css"))
     )
   } else if (!is.null(r_options$template)) {
     p_options <- c(p_options, "--template", r_options$template)
@@ -32,7 +32,7 @@ post_knit_event_handler <- function(r_options) {
     )
     css_content <- c(
       css_content,
-      read_to_string(get_pathfile_from_res("includes/rmd_to_html", "style_highlight.css"))
+      xfun::file_string(get_pathfile_from_res("includes/rmd_to_html", "style_highlight.css"))
     )
   } else if (!is.null(r_options$highlight)) {
     p_options <- c(p_options, "--highlight-style", r_options$highlight)
@@ -41,7 +41,7 @@ post_knit_event_handler <- function(r_options) {
   # Head
   head_content <- c(
     head_content,
-    read_to_string(get_pathfile_from_res("includes/rmd_to_html", "header.html"))
+    xfun::file_string(get_pathfile_from_res("includes/rmd_to_html", "header.html"))
   )
 
   # Navigate bar
@@ -52,16 +52,16 @@ post_knit_event_handler <- function(r_options) {
     )
     css_content <- c(
       css_content,
-      read_to_string(get_pathfile_from_res("includes/rmd_to_html", "style_navbar.css"))
+      xfun::file_string(get_pathfile_from_res("includes/rmd_to_html", "style_navbar.css"))
     )
     js_content <- c(
       js_content,
-      read_to_string(get_pathfile_from_res("includes/rmd_to_html", "header_navbar.js"))
+      xfun::file_string(get_pathfile_from_res("includes/rmd_to_html", "header_navbar.js"))
     )
     if (r_options$is_folding || r_options$is_download) {
       css_content <- c(
         css_content,
-        read_to_string(get_pathfile_from_res("includes/rmd_to_html", "style_code_btn.css"))
+        xfun::file_string(get_pathfile_from_res("includes/rmd_to_html", "style_code_btn.css"))
       )
       js_content <- c(
         js_content,
@@ -84,13 +84,13 @@ post_knit_event_handler <- function(r_options) {
   # body_prefix
   body_prefix_content <- c(
     body_prefix_content,
-    read_to_string(get_pathfile_from_res("includes/rmd_to_html", "body_prefix.html"))
+    xfun::file_string(get_pathfile_from_res("includes/rmd_to_html", "body_prefix.html"))
   )
 
   # body_suffix
   body_suffix_content <- c(
     body_suffix_content,
-    read_to_string(get_pathfile_from_res("includes/rmd_to_html", "body_suffix.html"))
+    xfun::file_string(get_pathfile_from_res("includes/rmd_to_html", "body_suffix.html"))
   )
 
   # Begin write all_content to tempfile
@@ -123,7 +123,7 @@ on_exit_event_handler <- function(r_options) {
     dirname(r_options$pre_knit$source_input),
     r_options$post_processor$output_file
   )
-  output_content <- read_to_string(output_file)
+  output_content <- xfun::file_string(output_file)
   output_content <- gsub(
     pattern = "[[:space:]]*<script>[[:space:]]*// Pandoc 2.9 [[:print:][:space:]]*while \\(a.length > 0\\) h.removeAttribute\\(a\\[0\\].name\\);[[:space:]]*\\}[[:space:]]*\\}\\);[[:space:]]*</script>[[:space:]]*",
     replacement = "", output_content
