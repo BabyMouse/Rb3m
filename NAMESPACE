@@ -3,6 +3,7 @@
 export(build_parg_from_res)
 export(embed_file_a)
 export(get_pathfile_from_res)
+export(list_merge)
 export(pre_knit_event_handler)
 export(print_list)
 export(rmd_to_html)

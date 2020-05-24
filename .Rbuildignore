@@ -1,9 +1,10 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.Rprofile$
-^packrat$
-^node_modules$
-^test$
-^tests$
+^packrat.*$
+^node_modules.*$
+^.*test.*$
+^tests.*$
 ^build\.R$
-^.\docs$
+^docs.*$
+^trash.*$

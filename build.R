@@ -2,6 +2,8 @@
 if (length(find.package("Rb3m", quiet = TRUE)) != 0) {
   devtools::uninstall(pkg = ".")
 }
+# Remove all document files to rebuild
+do.call(file.remove, list(list.files("man", full.names = TRUE)))
 
 devtools::load_all()
 devtools::document()

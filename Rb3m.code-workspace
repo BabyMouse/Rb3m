@@ -146,7 +146,8 @@
       ".eslintrc": "jsonc",
       ".markdownlintrc": "jsonc",
       "*.theme": "jsonc",
-      "*.Rmd": "markdown"
+      "*.Rmd": "markdown",
+      "*.thtml": "html"
     },
     "[html]": {
       //"editor.formatOnSave": false
