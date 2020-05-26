@@ -38,9 +38,9 @@ print_list <- function(lst = NULL, indent_string = NULL, list_title = NULL) {
     }
   }
 }
-#' @title Merge 2 list
+#' @title Merge 2 lists
 #' @description
-#' Merge 2 list into 1 list.
+#' Merge 2 lists into 1 list.
 #'
 #' @param a List type, can \code{unnamed}.
 #' @param b List type, will ignore \code{unnamed}.
@@ -56,7 +56,7 @@ print_list <- function(lst = NULL, indent_string = NULL, list_title = NULL) {
 #' @examples
 #' l1 <- list(a = T, b = F, d = list(g = 3))
 #' l2 <- list(b = T, c = T, d = list(e = 1, f = 2))
-#' list_merge(l1, l2)
+#' Rb3m::list_merge(l1, l2)
 list_merge <- function(a, b) {
   if (length(a) == 0) {
     return(b)
