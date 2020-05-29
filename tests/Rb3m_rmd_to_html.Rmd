@@ -7,18 +7,29 @@ date-meta: "Cập nhật: `r format(Sys.time(), '%Y-%m-%d')`"
 output:
   Rb3m::rmd_to_html:
     code_folding: 'show'
-    code_download: on
-    navibar:
-      left:
-        home:
-          text: "Home"
-          icon: "home-solid.svg"
-          href: "https://rpubs.com/BabyMouse"
-      right:
-        github:
-          text: "GitHub"
-          icon: "github-brands.svg"
-          href: "https://github.com/BabyMouse/Rb3m"
+    #code_download: on
+    nav:
+      toc_deep: 3
+      toc_icon: "list-ul-solid.svg"
+      toc_text: ""
+      toc:
+        page1:
+          text: "Chapter 1"
+          href: "https://rpubs.com"
+        current: "Chapter 2"
+        page2:
+          text: "Chapter 3"
+          href: "https://rpubs.com"
+      home:
+        icon: "home-solid.svg"
+        text: "Home"
+        href: "https://rpubs.com/BabyMouse"
+      contact:
+        icon: "github-brands.svg"
+        text: "GitHub"
+        href: "https://github.com/BabyMouse/Rb3m"
+      show_all_code: on
+      download_code: on
 
 ---
 

@@ -81,13 +81,7 @@
 #'
 rmd_to_html <- function(
                         # Rb3m options
-                        # code_folding = c("none", "show", "hide"),
-                        # code_download = FALSE,
-                        # download_file_name,
-                        # download_file_title,
-                        template = "default",
-                        highlight = "default",
-                        navbar = "default",
+                        code_folding = c("show", "hide", "none"),
                         #
                         # Knit options
                         fig_width = 7,
@@ -108,9 +102,7 @@ rmd_to_html <- function(
                         # toc_float = FALSE,
                         # number_sections = FALSE,
                         # theme = "default",
-                        # highlight = "default",
                         # mathjax = "default",
-                        # template = "default",
                         # extra_dependencies = NULL,
                         # css = NULL,
                         # includes = NULL,
@@ -120,6 +112,7 @@ rmd_to_html <- function(
                         pandoc_variables = NULL,
                         ...) {
   dots_options <- list(...)
+  dots_names <- names(dots_options)
 
   # Knit options
   k_options <- list(
@@ -143,29 +136,22 @@ rmd_to_html <- function(
   )
 
   # Rb3m options
+  # Standardized input information
   r_options <- list(
-    code_folding = dots_options[["code_folding"]],
-    is_download = dots_options[["code_download"]],
-    download_file_name = dots_options[["download_file_name"]],
-    download_file_title = dots_options[["download_file_title"]]
+    code_folding = match.arg(code_folding),
+    head_tempfile = tempfile(fileext = ".html"),
+    body_prefix = tempfile(fileext = ".html"),
+    body_suffix = tempfile(fileext = ".html")
   )
+  if (!is.null(dots_names["nav"])) r_options$nav <- dots_options[["nav"]]
+  if (!is.null(dots_names["template"])) r_options$template <- dots_options[["template"]]
+  if (!is.null(dots_names["highlight"])) r_options$highlight <- dots_options[["highlight"]]
 
-  # Standardized input information for `code_folding`
-  r_options$code_folding <- ifelse((is.null(r_options$code_folding)), "show", r_options$code_folding)
-  r_options$is_folding <- ifelse(r_options$code_folding == "off", FALSE, TRUE)
+  # message(missing(nav$download_file_title))
 
-  # Standardized input information for `code_download`
-  r_options$is_download <- ifelse(is.null(r_options$is_download), TRUE, as.logical(r_options$is_download))
-  r_options$download_file_name <- r_options$download_file_name
-  r_options$download_file_title <- r_options$download_file_title
+  if (is.null(r_options$code_folding) || r_options$code_folding == "none") r_options$is_folding <- FALSE
 
-  # r_options$navbar_tempfile <- build_navbar_template_to_tempfile(r_options)
-  r_options$template <- template
-  r_options$highlight <- highlight
-  r_options$navbar <- navbar
-  r_options$head_tempfile <- tempfile(fileext = ".html")
-  r_options$body_prefix <- tempfile(fileext = ".html")
-  r_options$body_suffix <- tempfile(fileext = ".html")
+  r_options <- list_merge(default_options, r_options)
 
   print_list(r_options, "  - ", "Rb3m options:")
 
@@ -177,14 +163,12 @@ rmd_to_html <- function(
   })
 
   pre_knit <- function(input, ...) {
-    r_options <<- c(r_options,
-      download_file_name = ifelse(is.null(r_options$download_file_name),
-        basename(input), r_options$download_file_name
-      ),
-      download_file_title = ifelse(is.null(r_options$download_file_title),
-        paste0("Download ", basename(input)), r_options$download_file_title
-      )
-    )
+    if (length(r_options$nav$download_file_name) == 0) {
+      r_options$nav$download_file_name <<- basename(input)
+    }
+    if (length(r_options$nav$download_file_title) == 0) {
+      r_options$nav$download_file_title <<- paste0("Download ", basename(input))
+    }
     r_options$pre_knit <<- list(source_input = input, ...)
 
     pre_knit_event_handler(r_options)

@@ -58,7 +58,7 @@ post_knit_event_handler <- function(r_options) {
       js_content,
       xfun::file_string(get_pathfile_from_res("includes/rmd_to_html", "header_navbar.js"))
     )
-    if (r_options$is_folding || r_options$is_download) {
+    if (r_options$is_folding || r_options$nav$download_code) {
       css_content <- c(
         css_content,
         xfun::file_string(get_pathfile_from_res("includes/rmd_to_html", "style_code_btn.css"))
@@ -92,7 +92,7 @@ post_knit_event_handler <- function(r_options) {
     body_suffix_content,
     xfun::file_string(get_pathfile_from_res("includes/rmd_to_html", "body_suffix.html"))
   )
-
+message("break")
   # Begin write all_content to tempfile
   xfun::write_utf8(head_content, r_options$head_tempfile)
   xfun::write_utf8(body_prefix_content, r_options$body_prefix)

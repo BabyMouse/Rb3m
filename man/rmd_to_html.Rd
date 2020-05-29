@@ -13,16 +13,12 @@ rmd_to_html(df_print)
 rmd_to_html(df_print, keep_md)
 }
 \arguments{
-\item{template}{Pandoc template to use for rendering. Pass "default" to use
-the rmarkdown package default template; pass \code{NULL} to use pandoc's
-built-in template; pass a path to use a custom template that you've created.
-Note that if you don't use the "default" template then some features of
-\code{html_document} won't be available (see the Templates section below for
-more details).}
-
-\item{highlight}{Syntax highlighting style. Supported styles include
-"default", "tango", "pygments", "kate", "monochrome", "espresso", "zenburn",
-"haddock", and "textmate". Pass \code{NULL} to prevent syntax highlighting.}
+\item{code_folding}{Enable document readers to toggle the display of R code
+chunks. Specify \code{"none"} to display all code chunks (assuming
+they were knit with \code{echo = TRUE}). Specify \code{"hide"} to hide all R
+code chunks by default (users can show hidden code chunks either
+individually or document-wide). Specify \code{"show"} to show all R code
+chunks by default.}
 
 \item{fig_width}{Default width (in inches) for figures}
 

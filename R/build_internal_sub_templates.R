@@ -3,7 +3,7 @@ build_internal_navbar_template_to_html_string <- function(r_options) {
     "includes/rmd_to_html",
     "body_prefix_navbar.template.html"
   ))
-  if (r_options$is_folding || r_options$is_download) {
+  if (r_options$is_folding || r_options$nav$download_code) {
     html_content <- gsub(
       "[[:space:]]*<Rb3m:code_menu>([[:print:][:space:]]*)</Rb3m:code_menu>[[:space:]]*",
       "\\1", html_content
@@ -20,7 +20,7 @@ build_internal_navbar_template_to_html_string <- function(r_options) {
         "", html_content
       )
     }
-    if (r_options$is_folding && r_options$is_download) {
+    if (r_options$is_folding && r_options$nav$download_code) {
       html_content <- gsub(
         "[[:space:]]*<Rb3m:code_folding-code_download>([[:print:][:space:]]*)</Rb3m:code_folding-code_download>[[:space:]]*",
         "\\1", html_content
@@ -32,12 +32,12 @@ build_internal_navbar_template_to_html_string <- function(r_options) {
         "", html_content
       )
     }
-    if (r_options$is_download) {
+    if (r_options$nav$download_code) {
       html_content <- gsub(
         "[[:space:]]*<Rb3m:code_download>([[:print:][:space:]]*)</Rb3m:code_download>[[:space:]]*",
         "\\1", html_content
       )
-      html_content <- gsub("\\$\\{download_file_name\\}", r_options$download_file_name, html_content)
+      html_content <- gsub("\\$\\{download_file_name\\}", r_options$nav$download_file_name, html_content)
       html_content <- gsub(
         "\\$\\{download_file_data\\}",
         paste0(
@@ -46,7 +46,7 @@ build_internal_navbar_template_to_html_string <- function(r_options) {
         ),
         html_content
       )
-      html_content <- gsub("\\$\\{download_file_title\\}", r_options$download_file_title, html_content)
+      html_content <- gsub("\\$\\{download_file_title\\}", r_options$nav$download_file_title, html_content)
     }
     else {
       html_content <- gsub(
@@ -70,7 +70,7 @@ build_internal_code_menu_template_to_html_string <- function(r_options) {
     "includes/rmd_to_html",
     "header_code_menu.template.js"
   ))
-  if (r_options$is_folding || r_options$is_download) {
+  if (r_options$is_folding || r_options$nav$download_code) {
     if (r_options$is_folding) {
       js_code_content <- c(
         js_code_content,
@@ -88,7 +88,7 @@ build_internal_code_menu_template_to_html_string <- function(r_options) {
         "", js_code_menu
       )
     }
-    if (r_options$is_download) {
+    if (r_options$nav$download_code) {
       js_code_content <- c(
         js_code_content,
         xfun::file_string(get_pathfile_from_res("includes/rmd_to_html", "header_code_download.js"))

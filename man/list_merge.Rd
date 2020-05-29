@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{list_merge}
 \alias{list_merge}
-\title{Merge 2 list}
+\title{Merge 2 lists}
 \usage{
 list_merge(a, b)
 }
@@ -15,12 +15,12 @@ list_merge(a, b)
 Output list type was merged.
 }
 \description{
-Merge 2 list into 1 list.
+Merge 2 lists into 1 list.
 }
 \examples{
 l1 <- list(a = T, b = F, d = list(g = 3))
 l2 <- list(b = T, c = T, d = list(e = 1, f = 2))
-list_merge(l1, l2)
+Rb3m::list_merge(l1, l2)
 }
 \seealso{
 \itemize{
